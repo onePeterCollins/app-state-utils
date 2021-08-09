@@ -12,3 +12,14 @@ create a reducer and import MutationHelper from 'app-state-utils'
 
 # with vue & vuex
 create a vuex store reference and import MutationHelper from 'app-state-utils'
+
+# with node.js
+const MutationHelper = require('app-state-utils')
+
+# with vanilla javascript
+import MutationHelper from 'app-state-utils'
+You can manipulate object key/value properties using the methods available
+
+# more
+found any bugs or need help using the package?
+report: onepetercollins@gmail.com
