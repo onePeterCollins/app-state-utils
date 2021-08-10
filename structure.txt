@@ -1,0 +1,154 @@
+THIS PACKAGE HAS 3 BRANCHES BASED ON THEIR UTILITY
+
+1. main <production branch>
+2. beta <beta branch>
+3. dev  <development branch> DO NOT PUBLISH
+
+
+FOLDER STRUCTURE
+
+<production branch>
+main -->
+       |- dist ->
+       |        |-index.js
+       |
+       |- functions ->
+       |             |-clearValue.js
+       |             |-createEntry.js
+       |             |-deleteEntry.js
+       |             |-index.js
+       |             |-logState.js
+       |             |-updateValue.js
+       |
+       |- src ->
+       |       |-clearValue.js
+       |       |-createEntry.js
+       |       |-deleteEntry.js
+       |       |-index.js
+       |       |-logState.js
+       |       |-updateValue.js
+       |
+       |-index.d.ts
+       |-index.js
+       |-LICENSE
+       |-package.json
+       |-README.md
+       |-CHANGELOG.md
+
+
+
+
+
+<beta branch>
+beta -->
+       |- dist ->
+       |        |-index.js
+       |        |-index.map.js
+       |
+       |- functions ->
+       |             |-clearValue.js
+       |             |-createEntry.js
+       |             |-deleteEntry.js
+       |             |-index.js
+       |             |-logState.js
+       |             |-updateValue.js
+       |
+       |- src ->
+       |       |-clearValue.js
+       |       |-createEntry.js
+       |       |-deleteEntry.js
+       |       |-index.js
+       |       |-logState.js
+       |       |-updateValue.js
+       |
+       |-index.d.ts
+       |-index.js
+       |-LICENSE
+       |-package.json
+       |-README.md
+       |-CHANGELOG.md
+
+
+
+
+
+<development branch>
+dev -->
+      |- beta -> (contains production ready code to be copied to the beta branch)
+      |        |- dist ->
+      |        |        |-index.js
+      |        |        |-index.map.js
+      |        |
+      |        |- functions ->
+      |        |             |-clearValue.js
+      |        |             |-createEntry.js
+      |        |             |-deleteEntry.js
+      |        |             |-index.js
+      |        |             |-logState.js
+      |        |             |-updateValue.js
+      |        |
+      |        |- src ->
+      |        |       |-clearValue.js
+      |        |       |-createEntry.js
+      |        |       |-deleteEntry.js
+      |        |       |-index.js
+      |        |       |-logState.js
+      |        |       |-updateValue.js
+      |        |
+      |        |-index.js
+      |
+      |- cdn -> (hosted on content delivery network - no beta on CDN)
+      |       |- dist ->
+      |       |        |-index.js
+      |       |
+      |       |- src ->
+      |               |-index.js
+      |
+      |- node_modules (dependencies)
+      |
+      |- prod -> (contains production ready code to be copied to the main branch)
+      |        |- dist ->
+      |        |        |-index.js
+      |        |
+      |        |- functions ->
+      |        |             |-clearValue.js
+      |        |             |-createEntry.js
+      |        |             |-deleteEntry.js
+      |        |             |-index.js
+      |        |             |-logState.js
+      |        |             |-updateValue.js
+      |        |
+      |        |- src ->
+      |        |       |-clearValue.js
+      |        |       |-createEntry.js
+      |        |       |-deleteEntry.js
+      |        |       |-index.js
+      |        |       |-logState.js
+      |        |       |-updateValue.js
+      |        |
+      |        |-index.js
+      |       
+      |- src ->
+      |       |- functions ->
+      |       |             |-clearValue.js
+      |       |             |-createEntry.js
+      |       |             |-deleteEntry.js
+      |       |             |-index.js
+      |       |             |-logState.js
+      |       |             |-updateValue.js
+      |       |
+      |       |-index.js
+      |
+      |- tests ->
+      |         |- unit_tests -> (unit tests)
+      |         |- integration_tests -> (integration tests)
+      |         |-index.js
+      |
+      |-index.d.ts
+      |-index.js
+      |-LICENSE
+      |-package.json
+      |-README.md
+      |-structure.txt
+      |-test.js
+      |-todo.txt
