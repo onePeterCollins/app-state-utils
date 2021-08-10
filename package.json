@@ -1,10 +1,11 @@
 {
   "name": "app-state-utils",
   "version": "1.0.0",
-  "description": "A set of utilities for state management in web apps, integrates well with front-end state management libraries like redux and vuex, and can be used on server side as well. It defines methods for mutating keys and values in a conventional javascript object, and it makes manipulating deeply nested data much easier.",
+  "description": "A set of utilities for state management in web apps, integrates well with front-end state management libraries like redux and vuex, and can be used on the server side as well. It defines methods for mutating keys and values in a conventional javascript object, and it makes manipulating deeply nested data much easier.",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build": "build"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,7 @@
     "helper-functions"
   ],
   "author": "Peter Collins",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/onePeterCollins/app-state-utils/issues"
   },

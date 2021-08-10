@@ -1,0 +1,37 @@
+ACTIVITY LOG
+
+1. Add babel compiler for backward compatibility.
+	status: pending
+	date: 10th Aug 2021
+
+2. Add minifier to minify and produce source maps for production build.
+	status: pending
+	date: 10th Aug 2021
+
+3. Install webpack for creating optimized production builds.
+	status: pending
+	date: 10th Aug 2021
+
+4. Add build task to package.json.
+	status: pending
+	date: 10th Aug 2021
+
+5. Install testing library and write test scripts.
+	status: pending
+	date: 10th Aug 2021
+
+6. Add test task to package.json.
+	status: pending
+	date: 10th Aug 2021
+
+7. write and publish proper documentation on github and npm.
+	status: pending
+	date: 10th Aug 2021
+	
+8. configure eslint for the project.
+	status: pending
+	date: 10th Aug 2021
+
+9. create functions folder to export the mutation helper methods individually as functions.
+	status: pending
+	date: 10th Aug 2021

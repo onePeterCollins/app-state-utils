@@ -1,27 +1,53 @@
 /**
- * @author Peter Collins - github.com\onepetercollins
+ * @author Peter Collins - https://github.com/onepetercollins
  * 
- * @fileoverview - HELPER FUNCTIONS TO PERFORM THE FOLLOWING OPERATIONS IN APP STATE
+ * @link   github repo :   https://github.com/onepetercollins/app-state-utils
+ * 
+ * @fileoverview : Exports a { MutationHelper } object which contains methods to perform the following operations in app state;
  *                  * Create an entry
- *                  * Update value
- *                  * Clear  value
- *                  * Delete key
+ *                  * Update a value
+ *                  * Clear a value
+ *                  * Delete an entry
+ *                  * Log state
+ * 
+ *                 The functions listed below have closures, and they are partially called with 'state' in the { MutationHelper } constructor;
+ *                  * createEntry()
+ *                  * updateValue()
+ *                  * clearValue()
+ *                  * deleteEntry()
+ *                  * logState()
+ * 
+ *                 The { MutationHelper } methods accept payload objects as arguments, as specified in their respective documentation.
  */
 
+
+
+
+
 /**
- * @function createEntry - For creating new [key: value] pairs in app state.
+ * @function createEntry : For creating new [key: value] pairs in app state.
  *                         This function can be used to dynamically create infinitely nested [key: value] pairs.
- *                         It takes current state as a parameter and returns updated state.
+ *                         It takes current state and a payload object as arguments.
+ *                         It returns a local function which returns updated state.
  * 
- * @param {Object}  state The object to be mutated.
- * @param {Object}  payload { name: String, value: any, child: Array }
- * @param {String}  payload.name Name of the key to be created or second object in the nesting hieriarchy.
- * @param {any}     payload.value Value to be assigned to newly created key.
- * @param {Array}   payload.child Array of strings pointing to the nested key to be created.
- * @returns {Object} updatedState The new app state, or current state if it was not altered.
+ * @param   {Object}   state The object to be mutated.
+ * @param   {Object}   payload { name: String, value: any, child: Array }
+ * @param   {String}   payload.name Name of the key to be created or second object in the nesting hieriarchy.
+ * @param   {any}      payload.value Value to be assigned to newly created key.
+ * @param   {Array}    payload.child Array of strings pointing to the nested key to be created.
+ * @returns {Function} (local function) (payload) => : The new app state, or current state if it was not altered.
  */
 
  const createEntry = (state, payload) => {
+
+    /**
+     * @param   {Object} payload { name: String, value: any, child: Array }
+     * @param   {String} payload.name Name of the key to be created or second object in the nesting hieriarchy.
+     * @param   {any}    payload.value Value to be assigned to newly created key.
+     * @param   {Array}  payload.child Array of strings pointing to the nested key to be created.
+     * @returns {Object} { updatedState } : The new app state, or current state if it was not altered.
+     */
+
     return function (payloadInherited = payload) {
         let currentState = JSON.parse(JSON.stringify(state));
         let updatedState = null;
@@ -53,7 +79,7 @@
                     console.error(`
                         \n State update failed,
                         \n You are attempting to perform unauthorized type changes.
-                        \n Pass [false] to the [staticType] parameter of the [updateValue] function to allow type changes.
+                        \n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.
                     `);
                     return state;
                 } else /* update value and return state if state has corresponding key with different value */ {
@@ -75,7 +101,7 @@
                         console.error(`
                             \n State update failed,
                             \n You are attempting to perform unauthorized type changes.
-                            \n Pass [false] to the [staticType] parameter of the [updateValue] function to allow type changes.
+                            \n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.
                         `);
                         return state;
                     } else /* update value and return state if state has corresponding key with different value */ {
@@ -119,7 +145,7 @@
                                     console.error(`
                                         \n State update failed,
                                         \n You are attempting to perform unauthorized type changes.
-                                        \n Pass [false] to the [staticType] parameter of the [updateValue] function to allow type changes.
+                                        \n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.
                                     `);
                                     return state;
                                 } else {
@@ -171,21 +197,36 @@
     }
 }
 
+
+
+
+
 /**
- * @function updateValue - For state drilling and surgical state updates.
+ * @function updateValue : For state drilling and surgical state updates.
  *                         This function can be used to dynamically set infinitely nested object values.
- *                         It takes current state as a parameter and returns updated state.
+ *                         It takes current state, a payload object, and an optional boolean value as arguments.
+ *                         It returns a local function which returns updated state.
  * 
- * @param {Object}  state The object to be mutated.
- * @param {Object}  payload { name: String, newValue: any, child: Array }
- * @param {String}  payload.name Name of the key to be mutated.
- * @param {any}     payload.newValue New value to be inserted.
- * @param {Array}   payload.child Array of strings pointing to the nested key to be mutated.
- * @param {Boolean} staticType Pass [false] to turn off console error when altering data types.
- * @returns {Object} updatedState The new app state, or current state if it was not altered.
+ * @param   {Object}   state The object to be mutated.
+ * @param   {Object}   payload { name: String, newValue: any, child: Array }
+ * @param   {String}   payload.name Name of the key to be mutated or second object in the nesting hieriarchy.
+ * @param   {any}      payload.newValue New value to be inserted.
+ * @param   {Array}    payload.child Array of strings pointing to the nested key to be mutated.
+ * @param   {Boolean}  staticType Pass 'false' to turn off console error when altering data types.
+ * @returns {Function} (local function) (payload, staticType) => : The new app state, or current state if it was not altered.
  */
 
 const updateValue = (state, payload, staticType = true) => {
+
+    /**
+     * @param   {Object}  payload { name: String, newValue: any, child: Array }
+     * @param   {String}  payload.name Name of the key to be mutated or second object in the nesting hieriarchy.
+     * @param   {any}     payload.newValue New value to be inserted.
+     * @param   {Array}   payload.child Array of strings pointing to the nested key to be mutated.
+     * @param   {Boolean} staticType Pass 'false' to turn off console error when altering data types.
+     * @returns {Object}  { updatedState } : The new app state, or current state if it was not altered.
+     */
+
     return function (payloadInherited = payload, staticTypeInherited = staticType) {
         let currentState = JSON.parse(JSON.stringify(state));
         let updatedState = null;
@@ -220,7 +261,7 @@ const updateValue = (state, payload, staticType = true) => {
                 console.error(`
                     \n State update failed,
                     \n You are attempting to perform unauthorized type changes.
-                    \n Pass [false] to the [staticType] parameter of the [updateValue] function to allow type changes.
+                    \n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.
                 `);
                 return state;
             } else /* update and return state */ {
@@ -256,7 +297,7 @@ const updateValue = (state, payload, staticType = true) => {
                             console.error(`
                                 State update failed,
                                 \n You are attempting to perform unauthorized type changes.
-                                \n Pass [false] to the [staticType] parameter of the [updateValue] function to allow type changes.
+                                \n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.
                             `);
                             return null;
                         } else /* update and return state */ {
@@ -285,19 +326,32 @@ const updateValue = (state, payload, staticType = true) => {
     }
 }
 
+
+
+
+
 /**
- * @function clearValue - For state drilling and surgical deletion of object values.
+ * @function clearValue : For state drilling and surgical deletion of object values.
  *                        This function can be used to dynamically delete infinitely nested object values.
- *                        It takes current state as a parameter and returns updated state.
+ *                        It takes current state and a payload object as arguments.
+ *                        It returns a local function which returns updated state.
  * 
- * @param {Object}  state The object to be mutated.
- * @param {Object}  payload { name: String, child: Array }
- * @param {String}  payload.name Name of the key to be cleared or second object in the nesting hieriarchy.
- * @param {Array}   payload.child Array of strings pointing to the nested value to be cleared.
- * @returns {Object} updatedState The new app state, or current state if it was not altered.
+ * @param   {Object}   state The object to be mutated.
+ * @param   {Object}   payload { name: String, child: Array }
+ * @param   {String}   payload.name Name of the key to be cleared or second object in the nesting hieriarchy.
+ * @param   {Array}    payload.child Array of strings pointing to the nested key to be cleared.
+ * @returns {Function} (local function) (payload) => : The new app state, or current state if it was not altered.
  */
 
 const clearValue = (state, payload) => {
+
+    /**
+     * @param   {Object} payload { name: String, child: Array }
+     * @param   {String} payload.name Name of the key to be created or second object in the nesting hieriarchy.
+     * @param   {Array}  payload.child Array of strings pointing to the nested key to be cleared.
+     * @returns {Object} { updatedState } : The new app state, or current state if it was not altered.
+     */
+
     return function (payloadInherited = payload) {
         let currentState = JSON.parse(JSON.stringify(state));
         let updatedState = null;
@@ -424,19 +478,32 @@ const clearValue = (state, payload) => {
     }
 }
 
+
+
+
+
 /**
- * @function deleteKey - For state drilling and surgical deletion of object keys.
- *                       This function can be used to dynamically delete infinitely nested object keys.
- *                       It takes current state as a parameter and returns updated state.
+ * @function deleteEntry : For state drilling and surgical deletion of object [key: value] pairs.
+ *                         This function can be used to dynamically delete infinitely nested object entries.
+ *                         It takes current state and a payload object as arguments.
+ *                         It returns a local function which returns updated state.
  * 
- * @param {Object} state The object to be mutated.
- * @param {Object} payload { name: String, child: Array }
- * @param {String}  payload.name Name of the key to be deleted or second object in the nesting hieriarchy.
- * @param {Array}   payload.child Array of strings pointing to the nested value to be deleted.
- * @returns {Object} updatedState The new app state, or current state if it was not altered.
+ * @param   {Object}   state The object to be mutated.
+ * @param   {Object}   payload { name: String, child: Array }
+ * @param   {String}   payload.name Name of the [key: value] pair to be deleted or second object in the nesting hieriarchy.
+ * @param   {Array}    payload.child Array of strings pointing to the nested [key: value] pair to be deleted.
+ * @returns {Function} (local function) (payload) => : The new app state, or current state if it was not altered.
  */
 
-const deleteKey = (state, payload) => {
+const deleteEntry = (state, payload) => {
+
+    /**
+     * @param   {Object} payload { name: String, child: Array }
+     * @param   {String} payload.name Name of the [key: value] pair to be deleted or second object in the nesting hieriarchy.
+     * @param   {Array}  payload.child Array of strings pointing to the nested [key: value] pair to be deleted.
+     * @returns {Object} { updatedState } : The new app state, or current state if it was not altered.
+     */
+
     return function (payloadInherited = payload) {
         let currentState = JSON.parse(JSON.stringify(state));
         let updatedState = null;
@@ -544,17 +611,29 @@ const deleteKey = (state, payload) => {
     }
 }
 
+
+
+
+
 /**
- * @function logState - To log current state or a selected part of it to the console for inspection.
+ * @function logState : To log current state or a selected part of it to the console for inspection.
  * 
- * @param {Object} state Current state.
- * @param {Object} payload { name: String, child: Array }
- * @param {String}  payload.name Name of the key to log.
- * @param {Array}   payload.child Array of strings pointing to the nested value to log.
- * @returns {Object} state Current app state, it does not alter the state.
+ * @param   {Object}   state Current state.
+ * @param   {Object}   payload { name: String, child: Array }
+ * @param   {String}   payload.name Name of the key to log or second object in the nesting hieriarchy.
+ * @param   {Array}    payload.child Array of strings pointing to the nested value to log.
+ * @returns {Function} (local function) (payload) => : Current app state, it does not alter the state.
  */
 
 const logState = (state, payload) => {
+
+    /**
+     * @param   {Object} payload { name: String, child: Array }
+     * @param   {String} payload.name Name of the key to log or second object in the nesting hieriarchy.
+     * @param   {Array}  payload.child Array of strings pointing to the nested value to log.
+     * @returns {Object} { state } : Current app state, it does not alter the state.
+     */
+
     return function (payloadInherited = payload) {
         let currentState = JSON.parse(JSON.stringify(state));
         let { name, child } = payloadInherited;
@@ -562,6 +641,8 @@ const logState = (state, payload) => {
         let children = child;
         let testArray = state ? Array.from(state) : null
         let snapshots = [];
+        let date = new Date();
+        let pathString = 'state';
 
         if (typeof state !== 'object' || (state[state.length - 1] === testArray.pop() && typeof testArray.pop() !== "undefined")) {
             console.error(`[state] must be a valid javascript object`);
@@ -570,27 +651,75 @@ const logState = (state, payload) => {
     
         if (typeof children === "object") /* check if 'children' is an empty array and nullify it */ {
             if (children.length === 0 && typeof children[children.length - 1] === "undefined") {
-                children = null
+                children = null;
             }
         }
-    
-        if (!children && !currentState.hasOwnProperty(nameField)) {
-            console.error(`The referenced property '${nameField}' does not exist in current state.`);
+
+        if (!payload) {
+            console.log(`
+                \n app state: @ ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}
+                \n state : ${state}
+            `);
             return state;
-        } else if (!children && currentState.hasOwnProperty(nameField)) /* log state to console */ {
-            console.log(currentState[nameField])
+        } else {
+            if (!children && !currentState.hasOwnProperty(nameField)) {
+                console.error(`The referenced property '${nameField}' does not exist in current state.`);
+                return state;
+            } else if (!children && currentState.hasOwnProperty(nameField)) /* log state to console */ {
+                console.log(`
+                    \n app state: @ ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}
+                    \n state.${nameField} : ${currentState[nameField]}
+                `);
+                return state;
+            } else if (children.length) {
+                for (let index = 0; index < children.length; index++) {
+                    if (!snapshots.length) {
+                        if (index === (children.length - 1)) {
+                            
+                        } else {
+    
+                        }
+                    } else {
+    
+                    }
+                }
+    
+                return state;
+            }
         }
-
-
     }
 }
 
+
+
+
+
+/**
+ * @constructor MutationHelper : Wrapper constructor containing methods for direct state mutation.
+ *                               It accepts current state as its only argument.
+ *                               It passes current state down to its methods for manipulation.
+ * 
+ * @param   {Object}    state Current state.
+ * @method  createEntry : For creating new [key: value] pairs in app state.
+ * @method  updateValue : For mutating existing values in app state.
+ * @method  clearValue  : For deleting/clearing existing values in app state.
+ * @method  deleteEntry : For deleting existing [key: value] pairs in app state.
+ * @method  logState    : For logging current state to the console.
+ * @returns {Object}    {
+ *                        createEntry(state),
+ *                        updateValue(state),
+ *                        clearValue(state),
+ *                        deleteEntry(state),
+ *                        logState(state)
+ *                      } : Methods for state mutation.
+ */
+
 const MutationHelper = function (state) {
-    this.createValue = createEntry(state);
+    this.createEntry = createEntry(state);
     this.updateValue = updateValue(state);
-    this.clearValue = clearValue(state);
-    this.deleteKey = deleteKey(state);
-    this.logState = logState(state);
+    this.clearValue  = clearValue(state);
+    this.deleteEntry = deleteEntry(state);
+    this.logState    = logState(state);
 };
 
 export default MutationHelper;
