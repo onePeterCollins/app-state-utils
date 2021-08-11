@@ -1,0 +1,91 @@
+GUIDELINES FOR CONTRIBUTING TO THE CODE BASE
+
+
+
+OVERVIEW
+
+* All development and testing is done on the 'dev' branch, the 'main' branch contains production-ready code that has been
+  tested and optimized. The 'beta' branch is for releasing features that are still being tested.
+
+* In the 'dev' branch, all source code is contained in the 'src' folder.
+
+* In the 'dev' branch, build scripts are contained in the 'scripts' folder, and the major build tool is babel.
+
+* The tests are contained in the 'tests' folder.
+
+* The 'beta' folder contains the output of beta build, which is copied to the 'beta' branch and published.
+
+* The 'prod' folder contains the output of the production build - which is the default build task - and is copied to the
+  'main' branch for publishing.
+
+* The project structure is described schematically in the 'structure.txt'.
+
+* 'todo.txt' is the activity log, and 'README.md' contains the documentation for this package.
+
+
+GETTING STARTED
+
+to contribute to the code base, create a local branch on your PC from the dev branch.
+  
+  (run: git branch myLocalDevBranch)
+
+* After creating your local development branch, make it your active branch.
+
+  (run: git branch myLocalDevBranch)
+
+* Now you are in your local development branch.
+
+* You can work on the source code in the 'src' folder here.
+
+* You can create or modify build scripts in the 'scripts' folder.
+
+* You can write or run tests by working in the 'tests' folder.
+
+* You can add scripts to the package.json and you can add or remove dependencies.
+
+* To test your code, you need to generate a production build or a beta build code by running one of the build scripts
+  contained in the package.json.
+
+* The production build output will be contained in the 'prod' folder on your local development branch.
+
+* Beta build output will be contained in the 'beta' folder on your local development branch.
+
+* The build process transpiles the source code contained in the 'src' folder from ES6+ to ES5 for backward compatibility
+  and minifies it for optimal performance.
+
+
+TESTING YOUR BUILD OUTPUT
+
+* After creating a build, it is necessary to test and ensure your code works as intended.
+
+* First copy your build output to another folder outside your working directory.
+
+* Switch to the main or beta branch depending on what kind of build you want to test.
+
+* Create a local branch from the main or beta directory.
+  (run: git branch myLocalMainBranch) or (run: git branch myLocalBetaBranch)
+
+* Make the newly created branch active.
+  (run: git checkout myLocalMainBranch) or (run: git checkout myLocalBetaBranch)
+
+* Now fetch your build output and paste it in this folder, make sure you overwrite any existing identical files.
+
+* You can now copy paste your working directory into the 'node_modules' folder of a project you can use to test the
+  package.
+
+
+SHARING YOUR SOLUTION
+
+* Congratulations, if you have made it this far then you have come a long way. I want to assume you have made a contribution
+  to the code base, and after some local testing you want to share your solution. In order to maintain the integrity of
+  our package, you will be required to follow these guidelines if you don't have contributor access on the repository.
+
+* If you created a new file/files or you modified existing ones, please write proper documentation where necessary.
+
+* Include tags like @author, @fileoverview, @function, @param, @returns, etc to help us understand what you have done.
+
+* Create a patch file that captures all the changes you made to the code base as part of your solution.
+
+* Send the patch file with a short description of the issue solved to onepetercollins@gmail.com.
+
+Cheers! hope to hear from you soon.

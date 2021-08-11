@@ -28,6 +28,7 @@ main -->
        |       |-logState.js
        |       |-updateValue.js
        |
+       |-.gitignore
        |-index.d.ts
        |-index.js
        |-LICENSE
@@ -61,6 +62,7 @@ beta -->
        |       |-logState.js
        |       |-updateValue.js
        |
+       |-.gitignore
        |-index.d.ts
        |-index.js
        |-LICENSE
@@ -151,7 +153,8 @@ dev -->
       |         |- integration_tests -> (integration tests)
       |         |-index.js
       |
-      |.gitignore
+      |-.gitignore
+      |-contrubitors-guide.txt
       |-index.d.ts
       |-index.js
       |-LICENSE
