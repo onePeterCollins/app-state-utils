@@ -127,7 +127,21 @@ dev -->
       |        |       |-updateValue.js
       |        |
       |        |-index.js
-      |       
+      |
+      |- scripts ->
+      |           |- build ->
+      |           |         |-build.js
+      |           |         |-postbuild.js
+      |           |         |-prebuild.js
+      |           |
+      |           |- build_beta ->
+      |           |              |-build.js
+      |           |              |-postbuild.js
+      |           |              |-prebuild.js
+      |           |
+      |           |- test ->
+      |                    |-test.js
+      |
       |- src ->
       |       |- functions ->
       |       |             |-clearValue.js
@@ -144,11 +158,12 @@ dev -->
       |         |- integration_tests -> (integration tests)
       |         |-index.js
       |
+      |.gitignore
       |-index.d.ts
       |-index.js
       |-LICENSE
+      |-package-lock.json
       |-package.json
       |-README.md
       |-structure.txt
-      |-test.js
       |-todo.txt

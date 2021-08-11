@@ -4,9 +4,15 @@
   "description": "A set of utilities for state management in web apps, integrates well with front-end state management libraries like redux and vuex, and can be used on the server side as well. It defines methods for mutating keys and values in a conventional javascript object, and it makes manipulating deeply nested data much easier.",
   "main": "index.js",
   "scripts": {
-    "test": "test",
-    "build": "build",
-    "betabuild": "build"
+    "test": "node scripts/test/test.js",
+
+    "build": "node scripts/build/build.js",
+    "prebuild": "node scripts/build/prebuild.js",
+    "postbuild": "node scripts/build/postbuild.js",
+
+    "build-beta": "node scripts/build_beta/build.js",
+    "prebuild-beta": "node scripts/build_beta/prebuild.js",
+    "postbuild-beta": "node scripts/build_beta/postbuild.js"
   },
   "repository": {
     "type": "git",
@@ -29,5 +35,10 @@
   "bugs": {
     "url": "https://github.com/onePeterCollins/app-state-utils/issues"
   },
-  "homepage": "https://github.com/onePeterCollins/app-state-utils#readme"
+  "homepage": "https://github.com/onePeterCollins/app-state-utils#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "babel-minify": "^0.5.1"
+  }
 }
