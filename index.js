@@ -625,7 +625,7 @@ const deleteEntry = (state, payload) => {
  * @returns {Function} (local function) (payload) => : Current app state, it does not alter the state.
  */
 
-const logState = (state, payload) => {
+ const logState = (state, payload) => {
 
     /**
      * @param   {Object} payload { name: String, child: Array }
@@ -634,7 +634,7 @@ const logState = (state, payload) => {
      * @returns {Object} { state } : Current app state, it does not alter the state.
      */
 
-    return function (payloadInherited = payload) {
+    return function (payloadInherited = payload || { name: null, child: [] }) {
         let currentState = JSON.parse(JSON.stringify(state));
         let { name, child } = payloadInherited;
         let nameField = name;
@@ -642,7 +642,7 @@ const logState = (state, payload) => {
         let testArray = state ? Array.from(state) : null
         let snapshots = [];
         let date = new Date();
-        let pathString = 'state';
+        let pathString = `state.${nameField}`;
 
         if (typeof state !== 'object' || (state[state.length - 1] === testArray.pop() && typeof testArray.pop() !== "undefined")) {
             console.error(`[state] must be a valid javascript object`);
@@ -655,11 +655,9 @@ const logState = (state, payload) => {
             }
         }
 
-        if (!payload) {
-            console.log(`
-                \n app state: @ ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}
-                \n state : ${state}
-            `);
+        if (!payloadInherited.name) {
+            console.log(`\n app state @ ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
+            console.log(state)
             return state;
         } else {
             if (!children && !currentState.hasOwnProperty(nameField)) {
@@ -667,23 +665,41 @@ const logState = (state, payload) => {
                 return state;
             } else if (!children && currentState.hasOwnProperty(nameField)) /* log state to console */ {
                 console.log(`
-                    \n app state: @ ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}
-                    \n state.${nameField} : ${currentState[nameField]}
+                    \n app state @ ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}
+                    \n ${pathString} :
                 `);
+                console.log(state[nameField]);
                 return state;
             } else if (children.length) {
                 for (let index = 0; index < children.length; index++) {
                     if (!snapshots.length) {
+                        pathString += `.${children[index]}`;
+
                         if (index === (children.length - 1)) {
-                            
+                            console.log(`
+                                \n app state @ ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}
+                                \n ${pathString} :
+                            `);
+                            console.log(state[nameField][children[index]]);
                         } else {
-    
+                            snapshots.push(state[nameField][children[index]]);
                         }
                     } else {
-    
+                        pathString += `.${children[index]}`;
+
+                        if (index !== (children.length - 1)) {
+                            snapshots.push(snapshots[snapshots.length - 1][children[index]]);
+                        } else {
+                            snapshots.push(snapshots[snapshots.length - 1][children[index]]);
+
+                            console.log(`
+                                \n app state @ ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}
+                                \n ${pathString} :
+                            `);
+                            console.log(snapshots[snapshots.length - 1]);
+                        }
                     }
                 }
-    
                 return state;
             }
         }
