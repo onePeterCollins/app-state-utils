@@ -17,7 +17,9 @@ create a vuex store reference and import MutationHelper from 'app-state-utils'
 const MutationHelper = require('app-state-utils')
 
 # with vanilla javascript
-import MutationHelper from 'app-state-utils'
+use a script tag
+<script src="unpkg.com/app-state-utils"></script>
+
 You can manipulate object key/value properties using the methods available
 
 # more
