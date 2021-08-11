@@ -3,18 +3,22 @@ ACTIVITY LOG
 1. Add babel compiler for backward compatibility.
 	status: done
 	date: 11th Aug 2021
+	contributor: Peter Collins
 
 2. Add babel minifier to minify and produce source maps for production build.
 	status: done
 	date: 11th Aug 2021
+	contributor: Peter Collins
 
 3. Install webpack for creating optimized production builds.
 	status: cancelled (not needed)
 	date: 10th Aug 2021
+	contributor: Peter Collins
 
 4. Add build task to package.json.
 	status: done
 	date: 11th Aug 2021
+	contributor: Peter Collins
 
 5. Install testing library and write test scripts.
 	status: pending
@@ -23,6 +27,7 @@ ACTIVITY LOG
 6. Add test task to package.json.
 	status: done
 	date: 11th Aug 2021
+	contributor: Peter Collins
 
 7. Write and publish proper documentation on github and npm.
 	status: pending
@@ -35,7 +40,25 @@ ACTIVITY LOG
 9. Create functions folder to export the mutation helper methods individually as functions.
 	status: done
 	date: 11th Aug 2021
+	contributor: Peter Collins
 
-10. Remove node_modules from .gitignore on all branches
+10. Remove node_modules from .gitignore on all branches.
 	 status: done
+	 date: 11th Aug 2021
+	 contributor: Peter Collins
+
+11. Write build scripts for production and beta builds.
+	 status: pending
+	 date: 11th Aug 2021
+
+12. Write test scripts for each function in 'src/functions'.
+	 status: pending
+	 date: 11th Aug 2021
+
+13. Update contributors guide with info on how to create and send a patch file.
+	 status: pending
+	 date: 11th Aug 2021
+
+14. Write type definitions in index.d.ts.
+	 status: pending
 	 date: 11th Aug 2021
