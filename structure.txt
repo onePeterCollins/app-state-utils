@@ -97,13 +97,6 @@ dev -->
       |        |
       |        |-index.js
       |
-      |- cdn -> (hosted on content delivery network - no beta on CDN)
-      |       |- dist ->
-      |       |        |-index.js
-      |       |
-      |       |- src ->
-      |               |-index.js
-      |
       |- node_modules (dependencies)
       |
       |- prod -> (contains production ready code to be copied to the main branch)
