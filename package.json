@@ -5,11 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "node scripts/test/test.js",
-
     "build": "node scripts/build/build.js",
     "prebuild": "node scripts/build/prebuild.js",
     "postbuild": "node scripts/build/postbuild.js",
-
     "build-beta": "node scripts/build_beta/build.js",
     "prebuild-beta": "node scripts/build_beta/prebuild.js",
     "postbuild-beta": "node scripts/build_beta/postbuild.js"
