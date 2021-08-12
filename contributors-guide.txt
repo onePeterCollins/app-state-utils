@@ -25,7 +25,8 @@ OVERVIEW
 
 GETTING STARTED
 
-to contribute to the code base, create a local branch on your PC from the dev branch.
+to contribute to the code base, create a local branch on your PC from the dev branch. We assume you have cloned or
+forked the repository from https://github.com/onepetercollins/app-state-utils
   
   (run: git branch myLocalDevBranch)
 
@@ -82,10 +83,28 @@ SHARING YOUR SOLUTION
 
 * If you created a new file/files or you modified existing ones, please write proper documentation where necessary.
 
-* Include tags like @author, @fileoverview, @function, @param, @returns, etc to help us understand what you have done.
+* Include tags like @author, @fileoverview, @function, @param, @returns, etc in your files to help us understand what you have done.
 
 * Create a patch file that captures all the changes you made to the code base as part of your solution.
 
-* Send the patch file with a short description of the issue solved to onepetercollins@gmail.com.
+
+CREATING A PATCH FILE
+
+A patch file is a text file that helps us share code between our repositories.
+
+* If you are satisfied with the changes you have made in 'myLocalDevBranch' you can now commit them.
+  
+  (run: git checkout myLocalDevBranch) - to switch to 'myLocalDevBranch'
+  (run: git commit -m 'your new feature description') - to commit your changes in 'myLocalDevBranch'
+
+* Proceed to create the patch file.
+
+  if you have a single commit:
+  (run: git format-patch)
+
+  if you have multiple commits, where n is the number of commits:
+  (run: git format-patch HEAD~n)
+
+* Send the patch file(s) with a short description of the issue solved to onepetercollins@gmail.com.
 
 Cheers! hope to hear from you soon.

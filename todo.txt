@@ -21,8 +21,9 @@ ACTIVITY LOG
 	contributor: Peter Collins
 
 5. Install testing library and write test scripts.
-	status: pending
-	date: 10th Aug 2021
+	status: done
+	date: 11th Aug 2021
+	contributor: Peter Collins
 
 6. Add test task to package.json.
 	status: done
@@ -56,8 +57,8 @@ ACTIVITY LOG
 	 date: 11th Aug 2021
 
 13. Update contributors guide with info on how to create and send a patch file.
-	 status: pending
-	 date: 11th Aug 2021
+	 status: done
+	 date: 12th Aug 2021
 
 14. Write type definitions in index.d.ts.
 	 status: pending
