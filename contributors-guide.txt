@@ -100,10 +100,10 @@ A patch file is a text file that helps us share code between our repositories.
 * Proceed to create the patch file.
 
   if you have a single commit:
-  (run: git format-patch)
+  (run: git format-patch HEAD~1 --stdout > patchfile.patch)
 
   if you have multiple commits, where n is the number of commits:
-  (run: git format-patch HEAD~n)
+  (run: git format-patch HEAD~n --stdout > patchfile.patch)
 
 * Send the patch file(s) with a short description of the issue solved to onepetercollins@gmail.com.
 
