@@ -22,6 +22,8 @@ OVERVIEW
 
 * 'todo.txt' is the activity log, and 'README.md' contains the documentation for this package.
 
+* 'node_modules' is deliberately being tracked by git to manage dev dependencies. Please do not add 'node_modules' to '.gitignore'. 
+
 
 GETTING STARTED
 
