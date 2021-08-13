@@ -35,7 +35,6 @@
   },
   "homepage": "https://github.com/onePeterCollins/app-state-utils#readme",
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
     "@babel/core": "^7.15.0",
     "babel-minify": "^0.5.1",
     "eslint": "^7.32.0",
