@@ -11,8 +11,8 @@ ACTIVITY LOG
 	contributor: Peter Collins
 
 3. Install webpack for creating optimized production builds.
-	status: cancelled (not needed)
-	date: 10th Aug 2021
+	status: done
+	date: 12th Aug 2021
 	contributor: Peter Collins
 
 4. Add build task to package.json.
@@ -63,3 +63,7 @@ ACTIVITY LOG
 14. Write type definitions in index.d.ts.
 	 status: pending
 	 date: 11th Aug 2021
+
+15. remove irrelevant dev dependencies after writing build scripts.
+	 status: pending
+	 date: 12th Aug 2021

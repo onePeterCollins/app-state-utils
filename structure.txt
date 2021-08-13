@@ -21,12 +21,7 @@ main -->
        |             |-updateValue.js
        |
        |- src ->
-       |       |-clearValue.js
-       |       |-createEntry.js
-       |       |-deleteEntry.js
        |       |-index.js
-       |       |-logState.js
-       |       |-updateValue.js
        |
        |-.gitignore
        |-index.d.ts
@@ -55,12 +50,7 @@ beta -->
        |             |-updateValue.js
        |
        |- src ->
-       |       |-clearValue.js
-       |       |-createEntry.js
-       |       |-deleteEntry.js
        |       |-index.js
-       |       |-logState.js
-       |       |-updateValue.js
        |
        |-.gitignore
        |-index.d.ts
@@ -90,12 +80,7 @@ dev -->
       |        |             |-updateValue.js
       |        |
       |        |- src ->
-      |        |       |-clearValue.js
-      |        |       |-createEntry.js
-      |        |       |-deleteEntry.js
       |        |       |-index.js
-      |        |       |-logState.js
-      |        |       |-updateValue.js
       |        |
       |        |-index.js
       |
@@ -114,12 +99,7 @@ dev -->
       |        |             |-updateValue.js
       |        |
       |        |- src ->
-      |        |       |-clearValue.js
-      |        |       |-createEntry.js
-      |        |       |-deleteEntry.js
       |        |       |-index.js
-      |        |       |-logState.js
-      |        |       |-updateValue.js
       |        |
       |        |-index.js
       |
@@ -153,6 +133,7 @@ dev -->
       |         |- integration_tests -> (integration tests)
       |         |-index.js
       |
+      |-.babelrc.json
       |-.gitignore
       |-contrubitors-guide.txt
       |-index.d.ts
