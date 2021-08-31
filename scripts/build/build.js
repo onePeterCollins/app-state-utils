@@ -118,7 +118,7 @@ const buildProdFunctions = function (file, outputPath, fileName) {
     .then((result) => {
         fs.writeFile(`${outputPath}/${fileName}`, `${result.code} \n`, (error) => {
             if (error) {
-                console.log(`\n\n ERROR @ scripts/build/build.js -- line 87 \n`)
+                console.log(`\n\n ERROR @ scripts/build/build.js -- line 121 \n`)
                 console.log(`ENCOUNTERED ERROR WHILE TRANSPILING ${fileName}: \n`);
                 console.log(error);
             }
@@ -128,7 +128,7 @@ const buildProdFunctions = function (file, outputPath, fileName) {
         // console.log(result.code);
     })
     .catch((error) => {
-        console.log(`\n\n ERROR @ scripts/build/build.js -- line 85 \n`)
+        console.log(`\n\n ERROR @ scripts/build/build.js -- line 131 \n`)
         console.log(`ENCOUNTERED ERROR WHILE TRANSPILING ${fileName}: \n`);
         console.log(error);
     });

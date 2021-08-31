@@ -57,7 +57,7 @@
         if (!children && newValue === currentState[nameField]) /* warn if current state value corresponds with new value*/ {
             console.warn('State is already up to date.');
             return state;
-        } else if (!children.length && newValue !== currentState[nameField]) {
+        } else if (!children && newValue !== currentState[nameField]) {
             if (typeof newValue !== typeof currentState[nameField] && staticDataType) /* prevent unauthorized type changes */ {
                 console.error(`
                     \n State update failed,
@@ -100,7 +100,7 @@
                                 \n You are attempting to perform unauthorized type changes.
                                 \n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.
                             `);
-                            return null;
+                            return state;
                         } else /* update and return state */ {
                             for (let index0 = snapshots.length - 1; index0 >= 0; index0--) {
                                 if (index0 === (snapshots.length - 1)) {

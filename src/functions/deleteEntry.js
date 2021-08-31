@@ -56,9 +56,10 @@
                 for (let index = 0; index < Object.keys(currentState).length; index++) {
                     if (Object.keys(currentState)[index] !== nameField) {
                         updatedState[Object.keys(currentState)[index]] = Object.values(currentState)[index];
-                        return updatedState;
                     }
                 }
+                
+                return updatedState;
             } else {
                 return updatedState;
             }
@@ -129,4 +130,4 @@
             return state;
         }
     }
-};
+}

@@ -450,9 +450,10 @@ var deleteEntry = function deleteEntry(state, payload) {
         for (var index = 0; index < Object.keys(currentState).length; index++) {
           if (Object.keys(currentState)[index] !== nameField) {
             updatedState[Object.keys(currentState)[index]] = Object.values(currentState)[index];
-            return updatedState;
           }
         }
+
+        return updatedState;
       } else {
         return updatedState;
       }
@@ -713,7 +714,7 @@ var updateValue = function updateValue(state, payload) {
       {
         console.warn('State is already up to date.');
         return state;
-      } else if (!children.length && newValue !== currentState[nameField]) {
+      } else if (!children && newValue !== currentState[nameField]) {
       if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(newValue) !== (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(currentState[nameField]) && staticDataType)
         /* prevent unauthorized type changes */
         {
@@ -756,7 +757,7 @@ var updateValue = function updateValue(state, payload) {
               /* prevent unauthorized type changes */
               {
                 console.error("\n                                State update failed,\n                                \n You are attempting to perform unauthorized type changes.\n                                \n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.\n                            ");
-                return null;
+                return state;
               } else
               /* update and return state */
               {
