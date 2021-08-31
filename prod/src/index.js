@@ -1,11 +1,3 @@
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -26,7 +18,165 @@ return /******/ (() => { // webpackBootstrap
   \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"clearValue\": () => (/* binding */ clearValue)\n/* harmony export */ });\n/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ \"./node_modules/@babel/runtime/helpers/esm/typeof.js\");\n\n\n/**\r\n * @author Peter Collins - https://github.com/onepetercollins\r\n * \r\n * @fileoverview : Exports a function: clearValue(state, payload)\r\n * \r\n * @function clearValue : For state drilling and surgical deletion of object values.\r\n *                        This function can be used to dynamically delete infinitely nested object values.\r\n *                        It takes current state and a payload object as arguments.\r\n *                        It returns a local function which returns updated state.\r\n * \r\n * @param   {Object}   state The object to be mutated.\r\n * @param   {Object}   payload { name: String, child: Array }\r\n * @param   {String}   payload.name Name of the key to be cleared or second object in the nesting hieriarchy.\r\n * @param   {Array}    payload.child Array of strings pointing to the nested key to be cleared.\r\n * @returns {Function} (local function) (payload) => : The new app state, or current state if it was not altered.\r\n */\nvar clearValue = function clearValue(state, payload) {\n  /**\r\n   * @param   {Object} payload { name: String, child: Array }\r\n   * @param   {String} payload.name Name of the key to be created or second object in the nesting hieriarchy.\r\n   * @param   {Array}  payload.child Array of strings pointing to the nested key to be cleared.\r\n   * @returns {Object} { updatedState } : The new app state, or current state if it was not altered.\r\n   */\n  return function () {\n    var payloadInherited = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : payload;\n    var currentState = JSON.parse(JSON.stringify(state));\n    var updatedState = null;\n    var name = payloadInherited.name,\n        child = payloadInherited.child;\n    var nameField = name;\n    var children = child;\n    var testArray = state ? Array.from(state) : null;\n    var snapshots = [];\n\n    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(state) !== 'object' || state[state.length - 1] === testArray.pop() && typeof testArray.pop() !== \"undefined\") {\n      console.error(\"[state] must be a valid javascript object\");\n      return state;\n    }\n\n    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(children) === \"object\")\n      /* check if 'children' is an empty array and nullify it */\n      {\n        if (children.length === 0 && typeof children[children.length - 1] === \"undefined\") {\n          children = null;\n        }\n      }\n\n    if (!children && currentState.hasOwnProperty(nameField)) {\n      Object.assign(currentState, state);\n\n      if (typeof currentState[nameField] === \"boolean\") {\n        if (currentState[nameField]) {\n          currentState[nameField] = false;\n          updatedState = currentState;\n          return updatedState;\n        }\n      } else if (typeof currentState[nameField] === \"number\") {\n        if (currentState[nameField] !== 0) {\n          currentState[nameField] = 0;\n          updatedState = currentState;\n          return updatedState;\n        }\n      } else if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(currentState[nameField]) === \"object\") {\n        if (currentState[nameField]) {\n          if (typeof currentState.length === \"number\" && typeof currentState[currentState.length - 1] !== \"undefined\") {\n            currentState[nameField] = [];\n            updatedState = currentState;\n            return updatedState;\n          } else {\n            currentState[nameField] = {};\n            updatedState = currentState;\n            return updatedState;\n          }\n        }\n      } else if (typeof currentState[nameField] === \"string\" || (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(currentState[nameField]) === \"symbol\") {\n        if (currentState[nameField].length) {\n          currentState[nameField] = '';\n          updatedState = currentState;\n          return updatedState;\n        }\n      } else {\n        currentState[nameField] = '';\n        updatedState = currentState;\n        return updatedState;\n      }\n    } else if (!children && !currentState.hasOwnProperty(nameField)) {\n      console.error(\"The referenced property '\".concat(nameField, \"' does not exist in current state.\"));\n      return state;\n    } else if (children.length) {\n      for (var index = 0; index < children.length; index++) {\n        if (!snapshots.length) {\n          if (typeof currentState[nameField][children[index]] !== \"undefined\") {\n            snapshots.push(currentState[nameField][children[index]]);\n          } else {\n            console.error(\"The referenced property '\".concat(children[index], \"' does not exist in current state.\"));\n            return state;\n          }\n        } else {\n          if (typeof snapshots[snapshots.length - 1][children[index]] !== \"undefined\") {\n            snapshots.push(snapshots[snapshots.length - 1][children[index]]);\n          } else {\n            console.error(\"The referenced property '\".concat(children[index], \"' does not exist in current state.\"));\n            return state;\n          }\n        }\n\n        if (index === children.length - 1) {\n          for (var index0 = snapshots.length - 1; index0 >= 0; index0--) {\n            if (index0 === snapshots.length - 1) {\n              if (snapshots[snapshots.length - 1] !== null) {\n                if (typeof snapshots[snapshots.length - 1] === \"boolean\") {\n                  if (snapshots[snapshots.length - 1]) {\n                    snapshots[snapshots.length - 1] = false;\n                  }\n                } else if (typeof snapshots[snapshots.length - 1] === \"number\") {\n                  if (snapshots[snapshots.length - 1] !== 0) {\n                    snapshots[snapshots.length - 1] = 0;\n                  }\n                } else if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(snapshots[snapshots.length - 1]) === \"object\") {\n                  if (snapshots[snapshots.length - 1]) {\n                    if (typeof snapshots[snapshots.length - 1].length === \"number\" && typeof (snapshots[snapshots.length - 1].length - 1) !== \"undefined\") {\n                      snapshots[snapshots.length - 1] = [];\n                    } else {\n                      snapshots[snapshots.length - 1] = {};\n                    }\n                  }\n                } else if (typeof snapshots[snapshots.length - 1] === \"string\") {\n                  if (snapshots[snapshots.length - 1].length) {\n                    snapshots[snapshots.length - 1] = '';\n                  }\n                } else if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(snapshots[snapshots.length - 1]) === \"symbol\") {\n                  snapshots[snapshots.length - 1] = '';\n                } else {\n                  snapshots[snapshots.length - 1] = '';\n                }\n              }\n            } else {\n              snapshots[index0][children[index0 + 1]] = snapshots[index0 + 1];\n            }\n\n            if (index0 === 0) {\n              Object.assign(currentState, state);\n              currentState[nameField][children[index0]] = snapshots[index0];\n              updatedState = currentState;\n              return updatedState;\n            }\n          }\n        }\n      }\n    }\n  };\n};\n\n//# sourceURL=webpack://app-state-utils/./src/functions/clearValue.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "clearValue": () => (/* binding */ clearValue)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+
+
+/**
+ * @author Peter Collins - https://github.com/onepetercollins
+ * 
+ * @fileoverview : Exports a function: clearValue(state, payload)
+ * 
+ * @function clearValue : For state drilling and surgical deletion of object values.
+ *                        This function can be used to dynamically delete infinitely nested object values.
+ *                        It takes current state and a payload object as arguments.
+ *                        It returns a local function which returns updated state.
+ * 
+ * @param   {Object}   state The object to be mutated.
+ * @param   {Object}   payload { name: String, child: Array }
+ * @param   {String}   payload.name Name of the key to be cleared or second object in the nesting hieriarchy.
+ * @param   {Array}    payload.child Array of strings pointing to the nested key to be cleared.
+ * @returns {Function} (local function) (payload) => : The new app state, or current state if it was not altered.
+ */
+var clearValue = function clearValue(state, payload) {
+  /**
+   * @param   {Object} payload { name: String, child: Array }
+   * @param   {String} payload.name Name of the key to be created or second object in the nesting hieriarchy.
+   * @param   {Array}  payload.child Array of strings pointing to the nested key to be cleared.
+   * @returns {Object} { updatedState } : The new app state, or current state if it was not altered.
+   */
+  return function () {
+    var payloadInherited = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : payload;
+    var currentState = JSON.parse(JSON.stringify(state));
+    var updatedState = null;
+    var name = payloadInherited.name,
+        child = payloadInherited.child;
+    var nameField = name;
+    var children = child;
+    var testArray = state ? Array.from(state) : null;
+    var snapshots = [];
+
+    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(state) !== 'object' || state[state.length - 1] === testArray.pop() && typeof testArray.pop() !== "undefined") {
+      console.error("[state] must be a valid javascript object");
+      return state;
+    }
+
+    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(children) === "object")
+      /* check if 'children' is an empty array and nullify it */
+      {
+        if (children.length === 0 && typeof children[children.length - 1] === "undefined") {
+          children = null;
+        }
+      }
+
+    if (!children && currentState.hasOwnProperty(nameField)) {
+      Object.assign(currentState, state);
+
+      if (typeof currentState[nameField] === "boolean") {
+        if (currentState[nameField]) {
+          currentState[nameField] = false;
+          updatedState = currentState;
+          return updatedState;
+        }
+      } else if (typeof currentState[nameField] === "number") {
+        if (currentState[nameField] !== 0) {
+          currentState[nameField] = 0;
+          updatedState = currentState;
+          return updatedState;
+        }
+      } else if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(currentState[nameField]) === "object") {
+        if (currentState[nameField]) {
+          if (typeof currentState.length === "number" && typeof currentState[currentState.length - 1] !== "undefined") {
+            currentState[nameField] = [];
+            updatedState = currentState;
+            return updatedState;
+          } else {
+            currentState[nameField] = {};
+            updatedState = currentState;
+            return updatedState;
+          }
+        }
+      } else if (typeof currentState[nameField] === "string" || (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(currentState[nameField]) === "symbol") {
+        if (currentState[nameField].length) {
+          currentState[nameField] = '';
+          updatedState = currentState;
+          return updatedState;
+        }
+      } else {
+        currentState[nameField] = '';
+        updatedState = currentState;
+        return updatedState;
+      }
+    } else if (!children && !currentState.hasOwnProperty(nameField)) {
+      console.error("The referenced property '".concat(nameField, "' does not exist in current state."));
+      return state;
+    } else if (children.length) {
+      for (var index = 0; index < children.length; index++) {
+        if (!snapshots.length) {
+          if (typeof currentState[nameField][children[index]] !== "undefined") {
+            snapshots.push(currentState[nameField][children[index]]);
+          } else {
+            console.error("The referenced property '".concat(children[index], "' does not exist in current state."));
+            return state;
+          }
+        } else {
+          if (typeof snapshots[snapshots.length - 1][children[index]] !== "undefined") {
+            snapshots.push(snapshots[snapshots.length - 1][children[index]]);
+          } else {
+            console.error("The referenced property '".concat(children[index], "' does not exist in current state."));
+            return state;
+          }
+        }
+
+        if (index === children.length - 1) {
+          for (var index0 = snapshots.length - 1; index0 >= 0; index0--) {
+            if (index0 === snapshots.length - 1) {
+              if (snapshots[snapshots.length - 1] !== null) {
+                if (typeof snapshots[snapshots.length - 1] === "boolean") {
+                  if (snapshots[snapshots.length - 1]) {
+                    snapshots[snapshots.length - 1] = false;
+                  }
+                } else if (typeof snapshots[snapshots.length - 1] === "number") {
+                  if (snapshots[snapshots.length - 1] !== 0) {
+                    snapshots[snapshots.length - 1] = 0;
+                  }
+                } else if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(snapshots[snapshots.length - 1]) === "object") {
+                  if (snapshots[snapshots.length - 1]) {
+                    if (typeof snapshots[snapshots.length - 1].length === "number" && typeof (snapshots[snapshots.length - 1].length - 1) !== "undefined") {
+                      snapshots[snapshots.length - 1] = [];
+                    } else {
+                      snapshots[snapshots.length - 1] = {};
+                    }
+                  }
+                } else if (typeof snapshots[snapshots.length - 1] === "string") {
+                  if (snapshots[snapshots.length - 1].length) {
+                    snapshots[snapshots.length - 1] = '';
+                  }
+                } else if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(snapshots[snapshots.length - 1]) === "symbol") {
+                  snapshots[snapshots.length - 1] = '';
+                } else {
+                  snapshots[snapshots.length - 1] = '';
+                }
+              }
+            } else {
+              snapshots[index0][children[index0 + 1]] = snapshots[index0 + 1];
+            }
+
+            if (index0 === 0) {
+              Object.assign(currentState, state);
+              currentState[nameField][children[index0]] = snapshots[index0];
+              updatedState = currentState;
+              return updatedState;
+            }
+          }
+        }
+      }
+    }
+  };
+};
 
 /***/ }),
 
@@ -36,7 +186,195 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createEntry\": () => (/* binding */ createEntry)\n/* harmony export */ });\n/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ \"./node_modules/@babel/runtime/helpers/esm/typeof.js\");\n\n\n/**\r\n * @author Peter Collins - https://github.com/onepetercollins\r\n * \r\n * @fileoverview : Exports a function: createEntry(state, payload)\r\n * \r\n * @function createEntry : For creating new [key: value] pairs in app state.\r\n *                         This function can be used to dynamically create infinitely nested [key: value] pairs.\r\n *                         It takes current state and a payload object as arguments.\r\n *                         It returns a local function which returns updated state.\r\n * \r\n * @param   {Object}   state The object to be mutated.\r\n * @param   {Object}   payload { name: String, value: any, child: Array }\r\n * @param   {String}   payload.name Name of the key to be created or second object in the nesting hieriarchy.\r\n * @param   {any}      payload.value Value to be assigned to newly created key.\r\n * @param   {Array}    payload.child Array of strings pointing to the nested key to be created.\r\n * @returns {Function} (local function) (payload) => : The new app state, or current state if it was not altered.\r\n */\nvar createEntry = function createEntry(state, payload) {\n  /**\r\n   * @param   {Object} payload { name: String, value: any, child: Array }\r\n   * @param   {String} payload.name Name of the key to be created or second object in the nesting hieriarchy.\r\n   * @param   {any}    payload.value Value to be assigned to newly created key.\r\n   * @param   {Array}  payload.child Array of strings pointing to the nested key to be created.\r\n   * @returns {Object} { updatedState } : The new app state, or current state if it was not altered.\r\n   */\n  return function () {\n    var payloadInherited = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : payload;\n    var currentState = JSON.parse(JSON.stringify(state));\n    var updatedState = null;\n    var name = payloadInherited.name,\n        value = payloadInherited.value,\n        child = payloadInherited.child;\n    var nameField = name;\n    var children = child;\n    var testArray = state ? Array.from(state) : null;\n    var snapshots = [];\n\n    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(state) !== 'object' || state[state.length - 1] === testArray.pop() && typeof testArray.pop() !== \"undefined\") {\n      console.error(\"[state] must be a valid javascript object\");\n      return state;\n    }\n\n    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(children) === \"object\")\n      /* check if 'children' is an empty array and nullify it */\n      {\n        if (children.length === 0 && typeof children[children.length - 1] === \"undefined\") {\n          children = null;\n        }\n      }\n\n    if (!children && currentState[nameField])\n      /* warn if current state has key that corresponds with new key*/\n      {\n        console.warn(\"'\".concat(nameField, \"' key already exists in state.\"));\n\n        if (value === currentState[nameField])\n          /* warn if current state value corresponds with new value*/\n          {\n            console.warn('State is already up to date.');\n            return state;\n          } else {\n          if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(value) !== (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(currentState[nameField]))\n            /* prevent unauthorized type changes */\n            {\n              console.error(\"\\n                        \\n State update failed,\\n                        \\n You are attempting to perform unauthorized type changes.\\n                        \\n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.\\n                    \");\n              return state;\n            } else\n            /* update value and return state if state has corresponding key with different value */\n            {\n              Object.assign(currentState, state);\n              currentState[nameField] = value;\n              updatedState = currentState;\n              return updatedState;\n            }\n        }\n      } else if (!children && !currentState[nameField]) {\n      if (currentState.hasOwnProperty(nameField)) {\n        console.warn(\"'\".concat(nameField, \"' key already exists in state.\"));\n\n        if (value === currentState[nameField])\n          /* warn if current state value corresponds with new value*/\n          {\n            console.warn('State is already up to date.');\n            return state;\n          } else {\n          if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(value) !== (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(currentState[nameField]))\n            /* prevent unauthorized type changes */\n            {\n              console.error(\"\\n                            \\n State update failed,\\n                            \\n You are attempting to perform unauthorized type changes.\\n                            \\n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.\\n                        \");\n              return state;\n            } else\n            /* update value and return state if state has corresponding key with different value */\n            {\n              Object.assign(currentState, state);\n              currentState[nameField] = value;\n              updatedState = currentState;\n              return updatedState;\n            }\n        }\n      } else {\n        Object.assign(currentState, state);\n        currentState[nameField] = value;\n        updatedState = currentState;\n        return updatedState;\n      }\n    } else if (children.length && value !== currentState[nameField]) {\n      for (var index = 0; index < children.length; index++) {\n        if (!snapshots.length) {\n          if (typeof currentState[nameField] === \"undefined\") {\n            if (index === children.length - 1) {\n              currentState[nameField] = {};\n              currentState[nameField][children[index]] = value;\n              snapshots.push(currentState[nameField][children[index]]);\n            } else {\n              currentState[nameField] = {};\n              currentState[nameField][children[index]] = {};\n              snapshots.push(currentState[nameField][children[index]]);\n            }\n          } else {\n            if (typeof currentState[nameField][children[index]] === \"undefined\") {\n              if (index === children.length - 1) {\n                currentState[nameField][children[index]] = value;\n                snapshots.push(currentState[nameField][children[index]]);\n              } else {\n                currentState[nameField][children[index]] = {};\n                snapshots.push(currentState[nameField][children[index]]);\n              }\n            } else {\n              if (index === children.length - 1) {\n                if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(currentState[nameField][children[index]]) !== (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(value))\n                  /* prevent unauthorized type changes */\n                  {\n                    console.error(\"\\n                                        \\n State update failed,\\n                                        \\n You are attempting to perform unauthorized type changes.\\n                                        \\n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.\\n                                    \");\n                    return state;\n                  } else {\n                  currentState[nameField][children[index]] = value;\n                  snapshots.push(currentState[nameField][children[index]]);\n                }\n              } else {\n                snapshots.push(currentState[nameField][children[index]]);\n              }\n            }\n          }\n        } else {\n          if (index === children.length - 1) {\n            snapshots[snapshots.length - 1][children[index]] = value;\n            snapshots.push(snapshots[snapshots.length - 1][children[index]]);\n          }\n\n          if (typeof snapshots[snapshots.length - 1][children[index]] !== \"undefined\") {\n            if (index !== children.length - 1) {\n              snapshots.push(snapshots[snapshots.length - 1][children[index]]);\n            }\n          } else {\n            if (index !== children.length - 1) {\n              snapshots[snapshots.length - 1][children[index]] = {};\n              snapshots.push(snapshots[snapshots.length - 1][children[index]]);\n            }\n          }\n        }\n\n        if (index === children.length - 1) {\n          for (var index0 = snapshots.length - 1; index0 >= 0; index0--) {\n            if (index0 !== snapshots.length - 1) {\n              snapshots[index0][children[index0 + 1]] = snapshots[index0 + 1];\n            }\n\n            if (index0 === 0) {\n              Object.assign(currentState, state);\n              currentState[nameField][children[index0]] = snapshots[index0];\n              updatedState = currentState;\n              return updatedState;\n            }\n          }\n        }\n      }\n    } else {\n      Object.assign(currentState, state);\n      return currentState;\n    }\n  };\n};\n\n//# sourceURL=webpack://app-state-utils/./src/functions/createEntry.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createEntry": () => (/* binding */ createEntry)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+
+
+/**
+ * @author Peter Collins - https://github.com/onepetercollins
+ * 
+ * @fileoverview : Exports a function: createEntry(state, payload)
+ * 
+ * @function createEntry : For creating new [key: value] pairs in app state.
+ *                         This function can be used to dynamically create infinitely nested [key: value] pairs.
+ *                         It takes current state and a payload object as arguments.
+ *                         It returns a local function which returns updated state.
+ * 
+ * @param   {Object}   state The object to be mutated.
+ * @param   {Object}   payload { name: String, value: any, child: Array }
+ * @param   {String}   payload.name Name of the key to be created or second object in the nesting hieriarchy.
+ * @param   {any}      payload.value Value to be assigned to newly created key.
+ * @param   {Array}    payload.child Array of strings pointing to the nested key to be created.
+ * @returns {Function} (local function) (payload) => : The new app state, or current state if it was not altered.
+ */
+var createEntry = function createEntry(state, payload) {
+  /**
+   * @param   {Object} payload { name: String, value: any, child: Array }
+   * @param   {String} payload.name Name of the key to be created or second object in the nesting hieriarchy.
+   * @param   {any}    payload.value Value to be assigned to newly created key.
+   * @param   {Array}  payload.child Array of strings pointing to the nested key to be created.
+   * @returns {Object} { updatedState } : The new app state, or current state if it was not altered.
+   */
+  return function () {
+    var payloadInherited = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : payload;
+    var currentState = JSON.parse(JSON.stringify(state));
+    var updatedState = null;
+    var name = payloadInherited.name,
+        value = payloadInherited.value,
+        child = payloadInherited.child;
+    var nameField = name;
+    var children = child;
+    var testArray = state ? Array.from(state) : null;
+    var snapshots = [];
+
+    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(state) !== 'object' || state[state.length - 1] === testArray.pop() && typeof testArray.pop() !== "undefined") {
+      console.error("[state] must be a valid javascript object");
+      return state;
+    }
+
+    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(children) === "object")
+      /* check if 'children' is an empty array and nullify it */
+      {
+        if (children.length === 0 && typeof children[children.length - 1] === "undefined") {
+          children = null;
+        }
+      }
+
+    if (!children && currentState[nameField])
+      /* warn if current state has key that corresponds with new key*/
+      {
+        console.warn("'".concat(nameField, "' key already exists in state."));
+
+        if (value === currentState[nameField])
+          /* warn if current state value corresponds with new value*/
+          {
+            console.warn('State is already up to date.');
+            return state;
+          } else {
+          if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(value) !== (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(currentState[nameField]))
+            /* prevent unauthorized type changes */
+            {
+              console.error("\n                        \n State update failed,\n                        \n You are attempting to perform unauthorized type changes.\n                        \n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.\n                    ");
+              return state;
+            } else
+            /* update value and return state if state has corresponding key with different value */
+            {
+              Object.assign(currentState, state);
+              currentState[nameField] = value;
+              updatedState = currentState;
+              return updatedState;
+            }
+        }
+      } else if (!children && !currentState[nameField]) {
+      if (currentState.hasOwnProperty(nameField)) {
+        console.warn("'".concat(nameField, "' key already exists in state."));
+
+        if (value === currentState[nameField])
+          /* warn if current state value corresponds with new value*/
+          {
+            console.warn('State is already up to date.');
+            return state;
+          } else {
+          if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(value) !== (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(currentState[nameField]))
+            /* prevent unauthorized type changes */
+            {
+              console.error("\n                            \n State update failed,\n                            \n You are attempting to perform unauthorized type changes.\n                            \n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.\n                        ");
+              return state;
+            } else
+            /* update value and return state if state has corresponding key with different value */
+            {
+              Object.assign(currentState, state);
+              currentState[nameField] = value;
+              updatedState = currentState;
+              return updatedState;
+            }
+        }
+      } else {
+        Object.assign(currentState, state);
+        currentState[nameField] = value;
+        updatedState = currentState;
+        return updatedState;
+      }
+    } else if (children.length && value !== currentState[nameField]) {
+      for (var index = 0; index < children.length; index++) {
+        if (!snapshots.length) {
+          if (typeof currentState[nameField] === "undefined") {
+            if (index === children.length - 1) {
+              currentState[nameField] = {};
+              currentState[nameField][children[index]] = value;
+              snapshots.push(currentState[nameField][children[index]]);
+            } else {
+              currentState[nameField] = {};
+              currentState[nameField][children[index]] = {};
+              snapshots.push(currentState[nameField][children[index]]);
+            }
+          } else {
+            if (typeof currentState[nameField][children[index]] === "undefined") {
+              if (index === children.length - 1) {
+                currentState[nameField][children[index]] = value;
+                snapshots.push(currentState[nameField][children[index]]);
+              } else {
+                currentState[nameField][children[index]] = {};
+                snapshots.push(currentState[nameField][children[index]]);
+              }
+            } else {
+              if (index === children.length - 1) {
+                if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(currentState[nameField][children[index]]) !== (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(value))
+                  /* prevent unauthorized type changes */
+                  {
+                    console.error("\n                                        \n State update failed,\n                                        \n You are attempting to perform unauthorized type changes.\n                                        \n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.\n                                    ");
+                    return state;
+                  } else {
+                  currentState[nameField][children[index]] = value;
+                  snapshots.push(currentState[nameField][children[index]]);
+                }
+              } else {
+                snapshots.push(currentState[nameField][children[index]]);
+              }
+            }
+          }
+        } else {
+          if (index === children.length - 1) {
+            snapshots[snapshots.length - 1][children[index]] = value;
+            snapshots.push(snapshots[snapshots.length - 1][children[index]]);
+          }
+
+          if (typeof snapshots[snapshots.length - 1][children[index]] !== "undefined") {
+            if (index !== children.length - 1) {
+              snapshots.push(snapshots[snapshots.length - 1][children[index]]);
+            }
+          } else {
+            if (index !== children.length - 1) {
+              snapshots[snapshots.length - 1][children[index]] = {};
+              snapshots.push(snapshots[snapshots.length - 1][children[index]]);
+            }
+          }
+        }
+
+        if (index === children.length - 1) {
+          for (var index0 = snapshots.length - 1; index0 >= 0; index0--) {
+            if (index0 !== snapshots.length - 1) {
+              snapshots[index0][children[index0 + 1]] = snapshots[index0 + 1];
+            }
+
+            if (index0 === 0) {
+              Object.assign(currentState, state);
+              currentState[nameField][children[index0]] = snapshots[index0];
+              updatedState = currentState;
+              return updatedState;
+            }
+          }
+        }
+      }
+    } else {
+      Object.assign(currentState, state);
+      return currentState;
+    }
+  };
+};
 
 /***/ }),
 
@@ -46,7 +384,146 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"deleteEntry\": () => (/* binding */ deleteEntry)\n/* harmony export */ });\n/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ \"./node_modules/@babel/runtime/helpers/esm/typeof.js\");\n\n\n/**\r\n * @author Peter Collins - https://github.com/onepetercollins\r\n * \r\n * @fileoverview : Exports a function: deleteEntry(state, payload)\r\n * \r\n * @function deleteEntry : For state drilling and surgical deletion of object [key: value] pairs.\r\n *                         This function can be used to dynamically delete infinitely nested object entries.\r\n *                         It takes current state and a payload object as arguments.\r\n *                         It returns a local function which returns updated state.\r\n * \r\n * @param   {Object}   state The object to be mutated.\r\n * @param   {Object}   payload { name: String, child: Array }\r\n * @param   {String}   payload.name Name of the [key: value] pair to be deleted or second object in the nesting hieriarchy.\r\n * @param   {Array}    payload.child Array of strings pointing to the nested [key: value] pair to be deleted.\r\n * @returns {Function} (local function) (payload) => : The new app state, or current state if it was not altered.\r\n */\nvar deleteEntry = function deleteEntry(state, payload) {\n  /**\r\n   * @param   {Object} payload { name: String, child: Array }\r\n   * @param   {String} payload.name Name of the [key: value] pair to be deleted or second object in the nesting hieriarchy.\r\n   * @param   {Array}  payload.child Array of strings pointing to the nested [key: value] pair to be deleted.\r\n   * @returns {Object} { updatedState } : The new app state, or current state if it was not altered.\r\n   */\n  return function () {\n    var payloadInherited = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : payload;\n    var currentState = JSON.parse(JSON.stringify(state));\n    var updatedState = null;\n    var name = payloadInherited.name,\n        child = payloadInherited.child;\n    var nameField = name;\n    var children = child;\n    var testArray = state ? Array.from(state) : null;\n    var snapshots = [];\n\n    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(state) !== 'object' || state[state.length - 1] === testArray.pop() && typeof testArray.pop() !== \"undefined\") {\n      console.error(\"[state] must be a valid javascript object\");\n      return state;\n    }\n\n    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(children) === \"object\")\n      /* check if 'children' is an empty array and nullify it */\n      {\n        if (children.length === 0 && typeof children[children.length - 1] === \"undefined\") {\n          children = null;\n        }\n      }\n\n    if (!children && !currentState.hasOwnProperty(nameField)) {\n      console.error(\"The referenced property '\".concat(nameField, \"' does not exist in current state.\"));\n      return state;\n    }\n\n    if (!children && currentState.hasOwnProperty(nameField)) {\n      updatedState = {};\n\n      if (Object.keys(currentState).length > 1) {\n        for (var index = 0; index < Object.keys(currentState).length; index++) {\n          if (Object.keys(currentState)[index] !== nameField) {\n            updatedState[Object.keys(currentState)[index]] = Object.values(currentState)[index];\n            return updatedState;\n          }\n        }\n      } else {\n        return updatedState;\n      }\n    } else if (children.length && currentState.hasOwnProperty(nameField)) {\n      for (var _index = 0; _index < children.length; _index++) {\n        if (!snapshots.length) {\n          if (_index !== children.length - 1) {\n            snapshots.push(currentState[nameField][children[_index]]);\n          } else {\n            var mutatedObject = {};\n\n            for (var index0 = 0; index0 < Object.keys(currentState[nameField]).length; index0++) {\n              if (Object.keys(currentState[nameField])[index0] !== children[children.length - 1]) {\n                mutatedObject[Object.keys(currentState[nameField])[index0]] = currentState[nameField][Object.keys(currentState[nameField])[index0]];\n              }\n\n              if (index0 === Object.keys(currentState[nameField]).length - 1) {\n                Object.assign(currentState, state);\n                currentState[nameField] = mutatedObject;\n                updatedState = currentState;\n                return updatedState;\n              }\n            }\n          }\n        } else {\n          if (_index === children.length - 1) {\n            var _mutatedObject = {};\n\n            for (var _index2 = 0; _index2 < Object.keys(snapshots[snapshots.length - 1]).length; _index2++) {\n              if (Object.keys(snapshots[snapshots.length - 1])[_index2] !== children[children.length - 1]) {\n                if (typeof snapshots[snapshots.length - 1][children[_index]] !== \"undefined\") {\n                  _mutatedObject[Object.keys(snapshots[snapshots.length - 1])[_index2]] = snapshots[snapshots.length - 1][Object.keys(snapshots[snapshots.length - 1])[_index2]];\n                } else if (typeof snapshots[snapshots.length - 1][children[_index]] === \"undefined\") {\n                  console.log(\"The referenced property '\".concat(children[_index], \"' does not exist in current state.\"));\n                  return state;\n                }\n              }\n\n              if (_index2 === Object.keys(snapshots[snapshots.length - 1]).length - 1) {\n                snapshots[snapshots.length - 1] = _mutatedObject;\n              }\n            }\n\n            for (var _index3 = snapshots.length - 1; _index3 >= 0; _index3--) {\n              if (_index3 < snapshots.length - 1) {\n                snapshots[_index3][children[_index3 + 1]] = snapshots[_index3 + 1];\n              }\n\n              if (_index3 === 0) {\n                Object.assign(currentState, state);\n                currentState[nameField][children[_index3]] = snapshots[_index3];\n                updatedState = currentState;\n                return updatedState;\n              }\n            }\n          } else {\n            if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(snapshots[snapshots.length - 1][children[_index]]) === \"object\" && typeof snapshots[snapshots.length - 1][children[_index]] !== \"undefined\") {\n              snapshots.push(snapshots[snapshots.length - 1][children[_index]]);\n            } else if (typeof snapshots[snapshots.length - 1][children[_index]] === \"undefined\") {\n              console.log(\"The referenced property '\".concat(children[_index], \"' does not exist in current state.\"));\n              return state;\n            }\n          }\n        }\n      }\n    } else {\n      console.log(\"The referenced property '\".concat(nameField, \"' does not exist in current state.\"));\n      return state;\n    }\n  };\n};\n\n//# sourceURL=webpack://app-state-utils/./src/functions/deleteEntry.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "deleteEntry": () => (/* binding */ deleteEntry)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+
+
+/**
+ * @author Peter Collins - https://github.com/onepetercollins
+ * 
+ * @fileoverview : Exports a function: deleteEntry(state, payload)
+ * 
+ * @function deleteEntry : For state drilling and surgical deletion of object [key: value] pairs.
+ *                         This function can be used to dynamically delete infinitely nested object entries.
+ *                         It takes current state and a payload object as arguments.
+ *                         It returns a local function which returns updated state.
+ * 
+ * @param   {Object}   state The object to be mutated.
+ * @param   {Object}   payload { name: String, child: Array }
+ * @param   {String}   payload.name Name of the [key: value] pair to be deleted or second object in the nesting hieriarchy.
+ * @param   {Array}    payload.child Array of strings pointing to the nested [key: value] pair to be deleted.
+ * @returns {Function} (local function) (payload) => : The new app state, or current state if it was not altered.
+ */
+var deleteEntry = function deleteEntry(state, payload) {
+  /**
+   * @param   {Object} payload { name: String, child: Array }
+   * @param   {String} payload.name Name of the [key: value] pair to be deleted or second object in the nesting hieriarchy.
+   * @param   {Array}  payload.child Array of strings pointing to the nested [key: value] pair to be deleted.
+   * @returns {Object} { updatedState } : The new app state, or current state if it was not altered.
+   */
+  return function () {
+    var payloadInherited = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : payload;
+    var currentState = JSON.parse(JSON.stringify(state));
+    var updatedState = null;
+    var name = payloadInherited.name,
+        child = payloadInherited.child;
+    var nameField = name;
+    var children = child;
+    var testArray = state ? Array.from(state) : null;
+    var snapshots = [];
+
+    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(state) !== 'object' || state[state.length - 1] === testArray.pop() && typeof testArray.pop() !== "undefined") {
+      console.error("[state] must be a valid javascript object");
+      return state;
+    }
+
+    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(children) === "object")
+      /* check if 'children' is an empty array and nullify it */
+      {
+        if (children.length === 0 && typeof children[children.length - 1] === "undefined") {
+          children = null;
+        }
+      }
+
+    if (!children && !currentState.hasOwnProperty(nameField)) {
+      console.error("The referenced property '".concat(nameField, "' does not exist in current state."));
+      return state;
+    }
+
+    if (!children && currentState.hasOwnProperty(nameField)) {
+      updatedState = {};
+
+      if (Object.keys(currentState).length > 1) {
+        for (var index = 0; index < Object.keys(currentState).length; index++) {
+          if (Object.keys(currentState)[index] !== nameField) {
+            updatedState[Object.keys(currentState)[index]] = Object.values(currentState)[index];
+            return updatedState;
+          }
+        }
+      } else {
+        return updatedState;
+      }
+    } else if (children.length && currentState.hasOwnProperty(nameField)) {
+      for (var _index = 0; _index < children.length; _index++) {
+        if (!snapshots.length) {
+          if (_index !== children.length - 1) {
+            snapshots.push(currentState[nameField][children[_index]]);
+          } else {
+            var mutatedObject = {};
+
+            for (var index0 = 0; index0 < Object.keys(currentState[nameField]).length; index0++) {
+              if (Object.keys(currentState[nameField])[index0] !== children[children.length - 1]) {
+                mutatedObject[Object.keys(currentState[nameField])[index0]] = currentState[nameField][Object.keys(currentState[nameField])[index0]];
+              }
+
+              if (index0 === Object.keys(currentState[nameField]).length - 1) {
+                Object.assign(currentState, state);
+                currentState[nameField] = mutatedObject;
+                updatedState = currentState;
+                return updatedState;
+              }
+            }
+          }
+        } else {
+          if (_index === children.length - 1) {
+            var _mutatedObject = {};
+
+            for (var _index2 = 0; _index2 < Object.keys(snapshots[snapshots.length - 1]).length; _index2++) {
+              if (Object.keys(snapshots[snapshots.length - 1])[_index2] !== children[children.length - 1]) {
+                if (typeof snapshots[snapshots.length - 1][children[_index]] !== "undefined") {
+                  _mutatedObject[Object.keys(snapshots[snapshots.length - 1])[_index2]] = snapshots[snapshots.length - 1][Object.keys(snapshots[snapshots.length - 1])[_index2]];
+                } else if (typeof snapshots[snapshots.length - 1][children[_index]] === "undefined") {
+                  console.log("The referenced property '".concat(children[_index], "' does not exist in current state."));
+                  return state;
+                }
+              }
+
+              if (_index2 === Object.keys(snapshots[snapshots.length - 1]).length - 1) {
+                snapshots[snapshots.length - 1] = _mutatedObject;
+              }
+            }
+
+            for (var _index3 = snapshots.length - 1; _index3 >= 0; _index3--) {
+              if (_index3 < snapshots.length - 1) {
+                snapshots[_index3][children[_index3 + 1]] = snapshots[_index3 + 1];
+              }
+
+              if (_index3 === 0) {
+                Object.assign(currentState, state);
+                currentState[nameField][children[_index3]] = snapshots[_index3];
+                updatedState = currentState;
+                return updatedState;
+              }
+            }
+          } else {
+            if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(snapshots[snapshots.length - 1][children[_index]]) === "object" && typeof snapshots[snapshots.length - 1][children[_index]] !== "undefined") {
+              snapshots.push(snapshots[snapshots.length - 1][children[_index]]);
+            } else if (typeof snapshots[snapshots.length - 1][children[_index]] === "undefined") {
+              console.log("The referenced property '".concat(children[_index], "' does not exist in current state."));
+              return state;
+            }
+          }
+        }
+      }
+    } else {
+      console.log("The referenced property '".concat(nameField, "' does not exist in current state."));
+      return state;
+    }
+  };
+};
 
 /***/ }),
 
@@ -56,7 +533,104 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"logState\": () => (/* binding */ logState)\n/* harmony export */ });\n/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ \"./node_modules/@babel/runtime/helpers/esm/typeof.js\");\n\n\n/**\r\n * @author Peter Collins - https://github.com/onepetercollins\r\n * \r\n * @fileoverview : Exports a function: logState(state, payload)\r\n * \r\n * @function logState : To log current state or a selected part of it to the console for inspection.\r\n * \r\n * @param   {Object}   state Current state.\r\n * @param   {Object}   payload { name: String, child: Array }\r\n * @param   {String}   payload.name Name of the key to log or second object in the nesting hieriarchy.\r\n * @param   {Array}    payload.child Array of strings pointing to the nested value to log.\r\n * @returns {Function} (local function) (payload) => : Current app state, it does not alter the state.\r\n */\nvar logState = function logState(state, payload) {\n  /**\r\n   * @param   {Object} payload { name: String, child: Array }\r\n   * @param   {String} payload.name Name of the key to log or second object in the nesting hieriarchy.\r\n   * @param   {Array}  payload.child Array of strings pointing to the nested value to log.\r\n   * @returns {Object} { state } : Current app state, it does not alter the state.\r\n   */\n  return function () {\n    var payloadInherited = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : payload || {\n      name: null,\n      child: []\n    };\n    var currentState = JSON.parse(JSON.stringify(state));\n    var name = payloadInherited.name,\n        child = payloadInherited.child;\n    var nameField = name;\n    var children = child;\n    var testArray = state ? Array.from(state) : null;\n    var snapshots = [];\n    var date = new Date();\n    var pathString = \"state.\".concat(nameField);\n\n    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(state) !== 'object' || state[state.length - 1] === testArray.pop() && typeof testArray.pop() !== \"undefined\") {\n      console.error(\"[state] must be a valid javascript object\");\n      return state;\n    }\n\n    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(children) === \"object\")\n      /* check if 'children' is an empty array and nullify it */\n      {\n        if (children.length === 0 && typeof children[children.length - 1] === \"undefined\") {\n          children = null;\n        }\n      }\n\n    if (!payloadInherited.name) {\n      console.log(\"\\n app state @ \".concat(date.getHours(), \":\").concat(date.getMinutes(), \":\").concat(date.getSeconds()));\n      console.log(state);\n      return state;\n    } else {\n      if (!children && !currentState.hasOwnProperty(nameField)) {\n        console.error(\"The referenced property '\".concat(nameField, \"' does not exist in current state.\"));\n        return state;\n      } else if (!children && currentState.hasOwnProperty(nameField))\n        /* log state to console */\n        {\n          console.log(\"\\n                    \\n app state @ \".concat(date.getHours(), \":\").concat(date.getMinutes(), \":\").concat(date.getSeconds(), \"\\n                    \\n \").concat(pathString, \" :\\n                \"));\n          console.log(state[nameField]);\n          return state;\n        } else if (children.length) {\n        for (var index = 0; index < children.length; index++) {\n          if (!snapshots.length) {\n            pathString += \".\".concat(children[index]);\n\n            if (index === children.length - 1) {\n              console.log(\"\\n                                \\n app state @ \".concat(date.getHours(), \":\").concat(date.getMinutes(), \":\").concat(date.getSeconds(), \"\\n                                \\n \").concat(pathString, \" :\\n                            \"));\n              console.log(state[nameField][children[index]]);\n            } else {\n              snapshots.push(state[nameField][children[index]]);\n            }\n          } else {\n            pathString += \".\".concat(children[index]);\n\n            if (index !== children.length - 1) {\n              snapshots.push(snapshots[snapshots.length - 1][children[index]]);\n            } else {\n              snapshots.push(snapshots[snapshots.length - 1][children[index]]);\n              console.log(\"\\n                                \\n app state @ \".concat(date.getHours(), \":\").concat(date.getMinutes(), \":\").concat(date.getSeconds(), \"\\n                                \\n \").concat(pathString, \" :\\n                            \"));\n              console.log(snapshots[snapshots.length - 1]);\n            }\n          }\n        }\n\n        return state;\n      }\n    }\n  };\n};\n\n//# sourceURL=webpack://app-state-utils/./src/functions/logState.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "logState": () => (/* binding */ logState)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+
+
+/**
+ * @author Peter Collins - https://github.com/onepetercollins
+ * 
+ * @fileoverview : Exports a function: logState(state, payload)
+ * 
+ * @function logState : To log current state or a selected part of it to the console for inspection.
+ * 
+ * @param   {Object}   state Current state.
+ * @param   {Object}   payload { name: String, child: Array }
+ * @param   {String}   payload.name Name of the key to log or second object in the nesting hieriarchy.
+ * @param   {Array}    payload.child Array of strings pointing to the nested value to log.
+ * @returns {Function} (local function) (payload) => : Current app state, it does not alter the state.
+ */
+var logState = function logState(state, payload) {
+  /**
+   * @param   {Object} payload { name: String, child: Array }
+   * @param   {String} payload.name Name of the key to log or second object in the nesting hieriarchy.
+   * @param   {Array}  payload.child Array of strings pointing to the nested value to log.
+   * @returns {Object} { state } : Current app state, it does not alter the state.
+   */
+  return function () {
+    var payloadInherited = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : payload || {
+      name: null,
+      child: []
+    };
+    var currentState = JSON.parse(JSON.stringify(state));
+    var name = payloadInherited.name,
+        child = payloadInherited.child;
+    var nameField = name;
+    var children = child;
+    var testArray = state ? Array.from(state) : null;
+    var snapshots = [];
+    var date = new Date();
+    var pathString = "state.".concat(nameField);
+
+    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(state) !== 'object' || state[state.length - 1] === testArray.pop() && typeof testArray.pop() !== "undefined") {
+      console.error("[state] must be a valid javascript object");
+      return state;
+    }
+
+    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(children) === "object")
+      /* check if 'children' is an empty array and nullify it */
+      {
+        if (children.length === 0 && typeof children[children.length - 1] === "undefined") {
+          children = null;
+        }
+      }
+
+    if (!payloadInherited.name) {
+      console.log("\n app state @ ".concat(date.getHours(), ":").concat(date.getMinutes(), ":").concat(date.getSeconds()));
+      console.log(state);
+      return state;
+    } else {
+      if (!children && !currentState.hasOwnProperty(nameField)) {
+        console.error("The referenced property '".concat(nameField, "' does not exist in current state."));
+        return state;
+      } else if (!children && currentState.hasOwnProperty(nameField))
+        /* log state to console */
+        {
+          console.log("\n                    \n app state @ ".concat(date.getHours(), ":").concat(date.getMinutes(), ":").concat(date.getSeconds(), "\n                    \n ").concat(pathString, " :\n                "));
+          console.log(state[nameField]);
+          return state;
+        } else if (children.length) {
+        for (var index = 0; index < children.length; index++) {
+          if (!snapshots.length) {
+            pathString += ".".concat(children[index]);
+
+            if (index === children.length - 1) {
+              console.log("\n                                \n app state @ ".concat(date.getHours(), ":").concat(date.getMinutes(), ":").concat(date.getSeconds(), "\n                                \n ").concat(pathString, " :\n                            "));
+              console.log(state[nameField][children[index]]);
+            } else {
+              snapshots.push(state[nameField][children[index]]);
+            }
+          } else {
+            pathString += ".".concat(children[index]);
+
+            if (index !== children.length - 1) {
+              snapshots.push(snapshots[snapshots.length - 1][children[index]]);
+            } else {
+              snapshots.push(snapshots[snapshots.length - 1][children[index]]);
+              console.log("\n                                \n app state @ ".concat(date.getHours(), ":").concat(date.getMinutes(), ":").concat(date.getSeconds(), "\n                                \n ").concat(pathString, " :\n                            "));
+              console.log(snapshots[snapshots.length - 1]);
+            }
+          }
+        }
+
+        return state;
+      }
+    }
+  };
+};
 
 /***/ }),
 
@@ -66,17 +640,150 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"updateValue\": () => (/* binding */ updateValue)\n/* harmony export */ });\n/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ \"./node_modules/@babel/runtime/helpers/esm/typeof.js\");\n\n\n/**\r\n * @author Peter Collins - https://github.com/onepetercollins\r\n * \r\n * @fileoverview : Exports a function: updateValue(state, payload, staticType)\r\n * \r\n * @function updateValue : For state drilling and surgical state updates.\r\n *                         This function can be used to dynamically set infinitely nested object values.\r\n *                         It takes current state, a payload object, and an optional boolean value as arguments.\r\n *                         It returns a local function which returns updated state.\r\n * \r\n * @param   {Object}   state The object to be mutated.\r\n * @param   {Object}   payload { name: String, newValue: any, child: Array }\r\n * @param   {String}   payload.name Name of the key to be mutated or second object in the nesting hieriarchy.\r\n * @param   {any}      payload.newValue New value to be inserted.\r\n * @param   {Array}    payload.child Array of strings pointing to the nested key to be mutated.\r\n * @param   {Boolean}  staticType Pass 'false' to turn off console error when altering data types.\r\n * @returns {Function} (local function) (payload, staticType) => : The new app state, or current state if it was not altered.\r\n */\nvar updateValue = function updateValue(state, payload) {\n  var staticType = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;\n\n  /**\r\n   * @param   {Object}  payload { name: String, newValue: any, child: Array }\r\n   * @param   {String}  payload.name Name of the key to be mutated or second object in the nesting hieriarchy.\r\n   * @param   {any}     payload.newValue New value to be inserted.\r\n   * @param   {Array}   payload.child Array of strings pointing to the nested key to be mutated.\r\n   * @param   {Boolean} staticType Pass 'false' to turn off console error when altering data types.\r\n   * @returns {Object}  { updatedState } : The new app state, or current state if it was not altered.\r\n   */\n  return function () {\n    var payloadInherited = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : payload;\n    var staticTypeInherited = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : staticType;\n    var currentState = JSON.parse(JSON.stringify(state));\n    var updatedState = null;\n    var name = payloadInherited.name,\n        newValue = payloadInherited.newValue,\n        child = payloadInherited.child;\n    var nameField = name;\n    var children = child;\n    var testArray = state ? Array.from(state) : null;\n    var snapshots = [];\n    var staticDataType = staticTypeInherited ? true : false;\n\n    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(state) !== 'object' || state[state.length - 1] === testArray.pop() && typeof testArray.pop() !== \"undefined\") {\n      console.error(\"[state] must be a valid javascript object\");\n      return state;\n    }\n\n    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(children) === \"object\")\n      /* check if 'children' is an empty array and nullify it */\n      {\n        if (children.length === 0 && typeof children[children.length - 1] === \"undefined\") {\n          children = null;\n        }\n      }\n\n    if (!children && !currentState.hasOwnProperty(nameField)) {\n      console.error(\"The referenced property '\".concat(nameField, \"' does not exist in current state.\"));\n      return state;\n    }\n\n    if (!children && newValue === currentState[nameField])\n      /* warn if current state value corresponds with new value*/\n      {\n        console.warn('State is already up to date.');\n        return state;\n      } else if (!children.length && newValue !== currentState[nameField]) {\n      if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(newValue) !== (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(currentState[nameField]) && staticDataType)\n        /* prevent unauthorized type changes */\n        {\n          console.error(\"\\n                    \\n State update failed,\\n                    \\n You are attempting to perform unauthorized type changes.\\n                    \\n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.\\n                \");\n          return state;\n        } else\n        /* update and return state */\n        {\n          Object.assign(currentState, state);\n          currentState[nameField] = newValue;\n          updatedState = currentState;\n          return updatedState;\n        }\n    } else if (children.length && newValue !== currentState[nameField]) {\n      for (var index = 0; index < children.length; index++) {\n        if (!snapshots.length) {\n          if (typeof currentState[nameField][children[index]] !== \"undefined\") {\n            snapshots.push(currentState[nameField][children[index]]);\n          } else {\n            console.error(\"The referenced property '\".concat(nameField, \"' does not exist in current state.\"));\n            return state;\n          }\n        } else {\n          if (typeof snapshots[snapshots.length - 1][children[index]] !== \"undefined\") {\n            snapshots.push(snapshots[snapshots.length - 1][children[index]]);\n          } else {\n            console.error(\"The referenced property '\".concat(nameField, \"' does not exist in current state.\"));\n            return state;\n          }\n        }\n\n        if (index === children.length - 1) {\n          if (newValue === snapshots[snapshots.length - 1])\n            /* warn if current state value corresponds with new value*/\n            {\n              console.warn('State is already up to date.');\n              return state;\n            } else {\n            if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(newValue) !== (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(snapshots[snapshots.length - 1]) && staticDataType)\n              /* prevent unauthorized type changes */\n              {\n                console.error(\"\\n                                State update failed,\\n                                \\n You are attempting to perform unauthorized type changes.\\n                                \\n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.\\n                            \");\n                return null;\n              } else\n              /* update and return state */\n              {\n                for (var index0 = snapshots.length - 1; index0 >= 0; index0--) {\n                  if (index0 === snapshots.length - 1) {\n                    snapshots[index0] = newValue;\n                  } else {\n                    snapshots[index0][children[index0 + 1]] = snapshots[index0 + 1];\n                  }\n\n                  if (index0 === 0) {\n                    Object.assign(currentState, state);\n                    currentState[nameField][children[index0]] = snapshots[index0];\n                    updatedState = currentState;\n                    return updatedState;\n                  }\n                }\n              }\n          }\n        }\n      }\n    } else {\n      Object.assign(currentState, state);\n      return currentState;\n    }\n  };\n};\n\n//# sourceURL=webpack://app-state-utils/./src/functions/updateValue.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "updateValue": () => (/* binding */ updateValue)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
 
-/***/ }),
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/**
+ * @author Peter Collins - https://github.com/onepetercollins
+ * 
+ * @fileoverview : Exports a function: updateValue(state, payload, staticType)
+ * 
+ * @function updateValue : For state drilling and surgical state updates.
+ *                         This function can be used to dynamically set infinitely nested object values.
+ *                         It takes current state, a payload object, and an optional boolean value as arguments.
+ *                         It returns a local function which returns updated state.
+ * 
+ * @param   {Object}   state The object to be mutated.
+ * @param   {Object}   payload { name: String, newValue: any, child: Array }
+ * @param   {String}   payload.name Name of the key to be mutated or second object in the nesting hieriarchy.
+ * @param   {any}      payload.newValue New value to be inserted.
+ * @param   {Array}    payload.child Array of strings pointing to the nested key to be mutated.
+ * @param   {Boolean}  staticType Pass 'false' to turn off console error when altering data types.
+ * @returns {Function} (local function) (payload, staticType) => : The new app state, or current state if it was not altered.
+ */
+var updateValue = function updateValue(state, payload) {
+  var staticType = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _functions_clearValue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions/clearValue */ \"./src/functions/clearValue.js\");\n/* harmony import */ var _functions_createEntry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/createEntry */ \"./src/functions/createEntry.js\");\n/* harmony import */ var _functions_deleteEntry__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./functions/deleteEntry */ \"./src/functions/deleteEntry.js\");\n/* harmony import */ var _functions_logState__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./functions/logState */ \"./src/functions/logState.js\");\n/* harmony import */ var _functions_updateValue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./functions/updateValue */ \"./src/functions/updateValue.js\");\n/**\r\n * @author Peter Collins - https://github.com/onepetercollins\r\n * \r\n * @link   github repo :   https://github.com/onepetercollins/app-state-utils\r\n * \r\n * @fileoverview : Exports a { MutationHelper } object which contains methods to perform the following operations in app state;\r\n *                  * Create an entry\r\n *                  * Update a value\r\n *                  * Clear a value\r\n *                  * Delete an entry\r\n *                  * Log state\r\n * \r\n *                 The functions listed below have closures, and they are partially called with 'state' in the { MutationHelper } constructor;\r\n *                  * createEntry()\r\n *                  * updateValue()\r\n *                  * clearValue()\r\n *                  * deleteEntry()\r\n *                  * logState()\r\n * \r\n *                 The { MutationHelper } methods accept payload objects as arguments, as specified in their respective documentation.\r\n */\n\n\n\n\n\n/**\r\n * @constructor MutationHelper : Wrapper constructor containing methods for direct state mutation.\r\n *                               It accepts current state as its only argument.\r\n *                               It passes current state down to its methods for manipulation.\r\n * \r\n * @param   {Object}    state Current state.\r\n * @method  createEntry : For creating new [key: value] pairs in app state.\r\n * @method  updateValue : For mutating existing values in app state.\r\n * @method  clearValue  : For deleting/clearing existing values in app state.\r\n * @method  deleteEntry : For deleting existing [key: value] pairs in app state.\r\n * @method  logState    : For logging current state to the console.\r\n * @returns {Object}    {\r\n *                        createEntry(state),\r\n *                        updateValue(state),\r\n *                        clearValue(state),\r\n *                        deleteEntry(state),\r\n *                        logState(state)\r\n *                      } : Methods for state mutation.\r\n */\n\nvar MutationHelper = function MutationHelper(state) {\n  this.createEntry = (0,_functions_createEntry__WEBPACK_IMPORTED_MODULE_1__.createEntry)(state);\n  this.updateValue = (0,_functions_updateValue__WEBPACK_IMPORTED_MODULE_4__.updateValue)(state);\n  this.clearValue = (0,_functions_clearValue__WEBPACK_IMPORTED_MODULE_0__.clearValue)(state);\n  this.deleteEntry = (0,_functions_deleteEntry__WEBPACK_IMPORTED_MODULE_2__.deleteEntry)(state);\n  this.logState = (0,_functions_logState__WEBPACK_IMPORTED_MODULE_3__.logState)(state);\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MutationHelper);\n\n//# sourceURL=webpack://app-state-utils/./src/index.js?");
+  /**
+   * @param   {Object}  payload { name: String, newValue: any, child: Array }
+   * @param   {String}  payload.name Name of the key to be mutated or second object in the nesting hieriarchy.
+   * @param   {any}     payload.newValue New value to be inserted.
+   * @param   {Array}   payload.child Array of strings pointing to the nested key to be mutated.
+   * @param   {Boolean} staticType Pass 'false' to turn off console error when altering data types.
+   * @returns {Object}  { updatedState } : The new app state, or current state if it was not altered.
+   */
+  return function () {
+    var payloadInherited = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : payload;
+    var staticTypeInherited = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : staticType;
+    var currentState = JSON.parse(JSON.stringify(state));
+    var updatedState = null;
+    var name = payloadInherited.name,
+        newValue = payloadInherited.newValue,
+        child = payloadInherited.child;
+    var nameField = name;
+    var children = child;
+    var testArray = state ? Array.from(state) : null;
+    var snapshots = [];
+    var staticDataType = staticTypeInherited ? true : false;
+
+    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(state) !== 'object' || state[state.length - 1] === testArray.pop() && typeof testArray.pop() !== "undefined") {
+      console.error("[state] must be a valid javascript object");
+      return state;
+    }
+
+    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(children) === "object")
+      /* check if 'children' is an empty array and nullify it */
+      {
+        if (children.length === 0 && typeof children[children.length - 1] === "undefined") {
+          children = null;
+        }
+      }
+
+    if (!children && !currentState.hasOwnProperty(nameField)) {
+      console.error("The referenced property '".concat(nameField, "' does not exist in current state."));
+      return state;
+    }
+
+    if (!children && newValue === currentState[nameField])
+      /* warn if current state value corresponds with new value*/
+      {
+        console.warn('State is already up to date.');
+        return state;
+      } else if (!children.length && newValue !== currentState[nameField]) {
+      if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(newValue) !== (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(currentState[nameField]) && staticDataType)
+        /* prevent unauthorized type changes */
+        {
+          console.error("\n                    \n State update failed,\n                    \n You are attempting to perform unauthorized type changes.\n                    \n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.\n                ");
+          return state;
+        } else
+        /* update and return state */
+        {
+          Object.assign(currentState, state);
+          currentState[nameField] = newValue;
+          updatedState = currentState;
+          return updatedState;
+        }
+    } else if (children.length && newValue !== currentState[nameField]) {
+      for (var index = 0; index < children.length; index++) {
+        if (!snapshots.length) {
+          if (typeof currentState[nameField][children[index]] !== "undefined") {
+            snapshots.push(currentState[nameField][children[index]]);
+          } else {
+            console.error("The referenced property '".concat(nameField, "' does not exist in current state."));
+            return state;
+          }
+        } else {
+          if (typeof snapshots[snapshots.length - 1][children[index]] !== "undefined") {
+            snapshots.push(snapshots[snapshots.length - 1][children[index]]);
+          } else {
+            console.error("The referenced property '".concat(nameField, "' does not exist in current state."));
+            return state;
+          }
+        }
+
+        if (index === children.length - 1) {
+          if (newValue === snapshots[snapshots.length - 1])
+            /* warn if current state value corresponds with new value*/
+            {
+              console.warn('State is already up to date.');
+              return state;
+            } else {
+            if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(newValue) !== (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(snapshots[snapshots.length - 1]) && staticDataType)
+              /* prevent unauthorized type changes */
+              {
+                console.error("\n                                State update failed,\n                                \n You are attempting to perform unauthorized type changes.\n                                \n Pass 'false' to the (staticType) parameter of the 'updateValue()' function to allow type changes.\n                            ");
+                return null;
+              } else
+              /* update and return state */
+              {
+                for (var index0 = snapshots.length - 1; index0 >= 0; index0--) {
+                  if (index0 === snapshots.length - 1) {
+                    snapshots[index0] = newValue;
+                  } else {
+                    snapshots[index0][children[index0 + 1]] = snapshots[index0 + 1];
+                  }
+
+                  if (index0 === 0) {
+                    Object.assign(currentState, state);
+                    currentState[nameField][children[index0]] = snapshots[index0];
+                    updatedState = currentState;
+                    return updatedState;
+                  }
+                }
+              }
+          }
+        }
+      }
+    } else {
+      Object.assign(currentState, state);
+      return currentState;
+    }
+  };
+};
 
 /***/ }),
 
@@ -86,7 +793,25 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \***********************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ _typeof)\n/* harmony export */ });\nfunction _typeof(obj) {\n  \"@babel/helpers - typeof\";\n\n  if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") {\n    _typeof = function _typeof(obj) {\n      return typeof obj;\n    };\n  } else {\n    _typeof = function _typeof(obj) {\n      return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj;\n    };\n  }\n\n  return _typeof(obj);\n}\n\n//# sourceURL=webpack://app-state-utils/./node_modules/@babel/runtime/helpers/esm/typeof.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _typeof)
+/* harmony export */ });
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
 
 /***/ })
 
@@ -146,12 +871,78 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _functions_clearValue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions/clearValue */ "./src/functions/clearValue.js");
+/* harmony import */ var _functions_createEntry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/createEntry */ "./src/functions/createEntry.js");
+/* harmony import */ var _functions_deleteEntry__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./functions/deleteEntry */ "./src/functions/deleteEntry.js");
+/* harmony import */ var _functions_logState__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./functions/logState */ "./src/functions/logState.js");
+/* harmony import */ var _functions_updateValue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./functions/updateValue */ "./src/functions/updateValue.js");
+/**
+ * @author Peter Collins - https://github.com/onepetercollins
+ * 
+ * @link   github repo :   https://github.com/onepetercollins/app-state-utils
+ * 
+ * @fileoverview : Exports a { MutationHelper } object which contains methods to perform the following operations in app state;
+ *                  * Create an entry
+ *                  * Update a value
+ *                  * Clear a value
+ *                  * Delete an entry
+ *                  * Log state
+ * 
+ *                 The functions listed below have closures, and they are partially called with 'state' in the { MutationHelper } constructor;
+ *                  * createEntry()
+ *                  * updateValue()
+ *                  * clearValue()
+ *                  * deleteEntry()
+ *                  * logState()
+ * 
+ *                 The { MutationHelper } methods accept payload objects as arguments, as specified in their respective documentation.
+ */
+
+
+
+
+
+/**
+ * @constructor MutationHelper : Wrapper constructor containing methods for direct state mutation.
+ *                               It accepts current state as its only argument.
+ *                               It passes current state down to its methods for manipulation.
+ * 
+ * @param   {Object}    state Current state.
+ * @method  createEntry : For creating new [key: value] pairs in app state.
+ * @method  updateValue : For mutating existing values in app state.
+ * @method  clearValue  : For deleting/clearing existing values in app state.
+ * @method  deleteEntry : For deleting existing [key: value] pairs in app state.
+ * @method  logState    : For logging current state to the console.
+ * @returns {Object}    {
+ *                        createEntry(state),
+ *                        updateValue(state),
+ *                        clearValue(state),
+ *                        deleteEntry(state),
+ *                        logState(state)
+ *                      } : Methods for state mutation.
+ */
+
+var MutationHelper = function MutationHelper(state) {
+  this.createEntry = (0,_functions_createEntry__WEBPACK_IMPORTED_MODULE_1__.createEntry)(state);
+  this.updateValue = (0,_functions_updateValue__WEBPACK_IMPORTED_MODULE_4__.updateValue)(state);
+  this.clearValue = (0,_functions_clearValue__WEBPACK_IMPORTED_MODULE_0__.clearValue)(state);
+  this.deleteEntry = (0,_functions_deleteEntry__WEBPACK_IMPORTED_MODULE_2__.deleteEntry)(state);
+  this.logState = (0,_functions_logState__WEBPACK_IMPORTED_MODULE_3__.logState)(state);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MutationHelper);
+})();
+
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;

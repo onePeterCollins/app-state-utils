@@ -73,7 +73,7 @@ TESTING YOUR BUILD OUTPUT
 
 * Now fetch your build output and paste it in this folder, make sure you overwrite any existing identical files.
 
-* You can now copy paste your working directory into the 'node_modules' folder of a project you can use to test the
+* You can now copy and paste your working directory into the 'node_modules' folder of a project you can use to test the
   package.
 
 

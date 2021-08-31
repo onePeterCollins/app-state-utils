@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   mode: 'development',
   entry: path.resolve(__dirname, path.relative(__dirname, 'src/index.js')),
-  devtool: 'eval',
+  devtool: false,
 
   output: {
     path: path.resolve(__dirname, path.relative(__dirname, 'prod/src')),

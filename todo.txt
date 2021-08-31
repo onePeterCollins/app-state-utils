@@ -49,8 +49,9 @@ ACTIVITY LOG
 	 contributor: Peter Collins
 
 11. Write build scripts for production and beta builds.
-	 status: pending
-	 date: 11th Aug 2021
+	 status: done
+	 date: 31st Aug 2021
+	 contributor: Peter Collins
 
 12. Write test scripts for each function in 'src/functions'.
 	 status: pending
