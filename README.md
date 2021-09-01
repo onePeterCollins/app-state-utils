@@ -8,10 +8,10 @@ App state utils is a set of utilities for state management in web apps, it integ
 
 ##### - [Getting started](#getting-started)
 ##### - [Usage](#usage)
-- ##### [with React and Redux](#with-react-and-redux)
-- ##### [with Vue and Vuex](#with-vue-and-vuex)
-- ##### [with Node JS](#with-node-js)
-- ##### [in HTML script tag](#in-html-script-tag)
+- ##### - [with React and Redux](#with-react-and-redux)
+- ##### - [with Vue and Vuex](#with-vue-and-vuex)
+- ##### - [with Node JS](#with-node-js)
+- ##### - [in HTML script tag](#in-html-script-tag)
 
 &nbsp;
 &nbsp;
@@ -30,10 +30,10 @@ npm install app-state-utils
 To use in HTML script tag
 
 ```html
-<!-- Development mode with console warnings enabled -->
+/* Development mode with console warnings enabled */
 <script src="unpkg.com/app-state-utils"></script>
 
-<!-- Production mode with no console warnings -->
+/* Production mode with no console warnings */
 <script src="unpkg.com/app-state-utils/dist"></script>
 ```
 &nbsp;
