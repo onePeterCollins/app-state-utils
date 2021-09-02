@@ -33,7 +33,7 @@ To use in HTML script tag
 /* Development mode with console warnings enabled */
 <script src="unpkg.com/app-state-utils"></script>
 
-/* Production mode with no console warnings */
+/* Production mode with no console statements */
 <script src="unpkg.com/app-state-utils/dist"></script>
 ```
 &nbsp;
