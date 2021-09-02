@@ -22,4 +22,4 @@
 
 import MutationHelper from "./src";
 
-export default MutationHelper;
+export default MutationHelper.default;
