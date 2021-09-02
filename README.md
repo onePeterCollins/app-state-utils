@@ -191,6 +191,7 @@ It is also designed to eliminate the stress involved with mutating deeply nested
 
 ```javascript
 /** Creating new entry in app state **/
+
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createEntry, logState } from './actions.js';
@@ -215,9 +216,9 @@ const App = function (props) {
 
 AppMapStateToProps = (state) {
     return {
-        user: state.user
-        products: state.products
-        cart: state.cart
+        user: state.user,
+        products: state.products,
+        cart: state.cart,
         darkTheme: state.darkTheme
     }
 }
@@ -235,22 +236,70 @@ AppMapDispatchToProps = (dispatch) {
 
 export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 
+```
 
+[View demo in codesandbox](https://codesandbox.io/s/sharp-zeh-7k14k)
+
+&nbsp;
+
+```javascript
 /** Updating existing data in app state **/
 
-
-/** Clearing value in app state **/
-
-
-/** deleting entry from in app state **/
-
-
-/** Log current app state **/
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { updateValue, logState } from './actions.js';
 
 
 ```
 
-[View demo in codesandbox](https://codesandbox.io/s/sharp-zeh-7k14k)
+[View demo in codesandbox]()
+
+&nbsp;
+
+```javascript
+/** Clearing value in app state **/
+
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { clearValue, logState } from './actions.js';
+
+
+```
+
+[View demo in codesandbox]()
+
+&nbsp;
+
+```javascript
+/** deleting entry from in app state **/
+
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { deleteEntry, logState } from './actions.js';
+
+
+```
+
+[View demo in codesandbox]()
+
+&nbsp;
+
+```javascript
+/** Log current app state **/
+
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { logState } from './actions.js';
+
+
+```
+
+[View demo in codesandbox]()
+
+**Notice:** Logstate works only in development mode and not in production. Console statements are disabled in production mode.
+
+&nbsp;
+&nbsp;
 
 
 #### with Vue and Vuex
