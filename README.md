@@ -186,20 +186,14 @@ It is also designed to eliminate the stress involved with managing deeply nested
 import { useState } from "react";
 import { connect } from "react-redux";
 import { createEntry, logState } from "./actions.js";
-import "./styles.css";
 
 const App = (props) => {
   const [KEY, setKey] = useState("");
   const [VALUE, setValue] = useState("");
 
   return (
-    <div className="App">
-      <header>
-        <h1 className="header-txt">App State Utils Playground</h1>
-      </header>
-      <h3>Demo: createEntry()</h3>
-
-      <form onSubmit={(event) => {event.preventDefault()}}>
+    <>
+     <form onSubmit={(event) => {event.preventDefault()}}>
         <input type="text" name="key" placeholder="Enter Key" onChange={(event) => {setKey(event.target.value)}} value={KEY} />
 
         <input type="text" name="value" placeholder="Enter Value" onChange={(event) => {setValue(event.target.value)}} value={VALUE} />
@@ -212,7 +206,7 @@ const App = (props) => {
           Log State To Console
         </button>
       </form>
-    </div>
+    </>
   );
 };
 
