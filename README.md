@@ -238,7 +238,7 @@ export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 
 ```
 
-[View demo in codesandbox](https://codesandbox.io/s/sharp-zeh-7k14k)
+[View demo on codesandbox](https://codesandbox.io/s/sharp-zeh-7k14k)
 
 &nbsp;
 
@@ -292,7 +292,7 @@ export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 
 ```
 
-[View demo in codesandbox]()
+[View demo on codesandbox]()
 
 &nbsp;
 
@@ -335,7 +335,7 @@ const AppMapDispatchToProps = (dispatch) => ({
 export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 ```
 
-[View demo in codesandbox]()
+[View demo on codesandbox]()
 
 &nbsp;
 
@@ -378,7 +378,7 @@ const AppMapDispatchToProps = (dispatch) => ({
 export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 ```
 
-[View demo in codesandbox]()
+[View demo on codesandbox]()
 
 &nbsp;
 
@@ -416,7 +416,7 @@ const AppMapDispatchToProps = (dispatch) => ({
 export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 ```
 
-[View demo in codesandbox]()
+[View demo on codesandbox]()
 
 **Notice:** Logstate works only in development mode and not in production. Console statements are disabled in production mode.
 
