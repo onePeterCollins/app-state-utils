@@ -7,4 +7,4 @@ const libVersion = developmentMode
 
 env === 'production' ? libVersion = productionMode : libVersion = developmentMode
 
-return libVersion
+export default libVersion

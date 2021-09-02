@@ -1,6 +1,6 @@
 {
   "name": "app-state-utils",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A set of utilities for state management in web apps, integrates well with front-end state management libraries like redux and vuex, and can be used on server side as well. It defines methods for mutating keys and values in a conventional javascript object, and it makes manipulating deeply nested data much easier.",
   "main": "index.js",
   "scripts": {
