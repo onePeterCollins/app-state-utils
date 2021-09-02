@@ -181,49 +181,84 @@ It is also designed to eliminate the stress involved with managing deeply nested
 **See some example use cases;**
 
 ```javascript
-/** Creating new entry in app state **/
+/** creating new entry in app state **/
 
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { createEntry, logState } from './actions.js';
+import { useState } from "react";
+import { connect } from "react-redux";
+import { createEntry, logState } from "./actions.js";
+import "./styles.css";
 
+const App = (props) => {
+  const [KEY, setKey] = useState("");
+  const [VALUE, setValue] = useState("");
 
-const App = function (props) {
-    const [KEY, setKey] = useState('')
-    const [VALUE, setValue] = useState('')
-    
-    return (
-        <>
-            <input type="text" name="key" placeholder="Enter Key" onChange={(event) => {setKey(KEY + event.target.value)}} value={KEY} />
-            
-            <input type="text" name="value" placeholder="Enter Value" onChange={(event) => {setValue(VALUE + event.target.value)}} value={VALUE} />
-            
-            <button onClick={(event) => {props.createEntry({name: KEY, child: [], value: VALUE})}} >Create Entry</button>
-            
-            <button onClick={(event) => {props.logState()}} >Log State To Console</button>
-        </>
-    )
-}
+  return (
+    <div className="App">
+      <header>
+        <h1 className="header-txt">App State Utils Playground</h1>
+      </header>
+      <h3>Demo: createEntry()</h3>
 
-AppMapStateToProps = (state) {
-    return {
-        user: state.user,
-        products: state.products,
-        cart: state.cart,
-        darkTheme: state.darkTheme
-    }
-}
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
+        <input
+          type="text"
+          name="key"
+          placeholder="Enter Key"
+          onChange={(event) => {
+            setKey(event.target.value);
+          }}
+          value={KEY}
+        />
 
-AppMapDispatchToProps = (dispatch) {
-    return {
-        createEntry: (payload) => {
-          dispatch(createEntry(payload));
-        },
-        logState: () => {
-          dispatch(logState());
-        }
-    }
-}
+        <input
+          type="text"
+          name="value"
+          placeholder="Enter Value"
+          onChange={(event) => {
+            setValue(event.target.value);
+          }}
+          value={VALUE}
+        />
+
+        <button
+          onClick={(event) => {
+            props.createEntry({ name: KEY, child: [], value: VALUE });
+          }}
+        >
+          Create Entry
+        </button>
+
+        <button
+          onClick={(event) => {
+            props.logState();
+          }}
+        >
+          Log State To Console
+        </button>
+      </form>
+    </div>
+  );
+};
+
+const AppMapStateToProps = (state) => ({
+  user: state.user,
+  products: state.products,
+  cart: state.cart,
+  darkTheme: state.darkTheme
+});
+
+const AppMapDispatchToProps = (dispatch) => ({
+  createEntry: (payload) => {
+    dispatch(createEntry(payload));
+  },
+  logState: () => {
+    dispatch(logState());
+  }
+});
 
 export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 
