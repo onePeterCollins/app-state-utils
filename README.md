@@ -33,7 +33,7 @@ To use in HTML script tag
 /* Development mode with console warnings enabled */
 <script src="unpkg.com/app-state-utils"></script>
 
-/* Production mode with no console warnings */
+/* Production mode with no console statements */
 <script src="unpkg.com/app-state-utils/dist"></script>
 ```
 &nbsp;
@@ -62,6 +62,7 @@ import {
 &nbsp;
 
 #### with React and Redux
+---
 **Basic to intermediate knowledge of React and Redux is required**.
 Create a file 'actions.js' to contain actions which can be called from within your app to mutate state.
 Your 'actions.js' file should look like this;
@@ -191,6 +192,7 @@ It is also designed to eliminate the stress involved with mutating deeply nested
 
 ```javascript
 /** Creating new entry in app state **/
+
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createEntry, logState } from './actions.js';
@@ -235,34 +237,88 @@ AppMapDispatchToProps = (dispatch) {
 
 export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 
+```
 
+[View demo in codesandbox](https://codesandbox.io/s/sharp-zeh-7k14k)
+
+&nbsp;
+
+```javascript
 /** Updating existing data in app state **/
 
-
-/** Clearing value in app state **/
-
-
-/** deleting entry from in app state **/
-
-
-/** Log current app state **/
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { updateValue, logState } from './actions.js';
 
 
 ```
 
+[View demo in codesandbox]()
+
+&nbsp;
+
+```javascript
+/** Clearing value in app state **/
+
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { clearValue, logState } from './actions.js';
+
+
+```
+
+[View demo in codesandbox]()
+
+&nbsp;
+
+```javascript
+/** deleting entry from in app state **/
+
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { deleteEntry, logState } from './actions.js';
+
+
+```
+
+[View demo in codesandbox]()
+
+&nbsp;
+
+```javascript
+/** Log current app state **/
+
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { logState } from './actions.js';
+
+
+```
+
+[View demo in codesandbox]()
+
+**Notice:** Logstate works only in development mode and not in production. Console statements are disabled in production mode.
+
+&nbsp;
+&nbsp;
+
 
 #### with Vue and Vuex
+---
 create a vuex store reference and import MutationHelper from 'app-state-utils'
 
 #### with Node JS
+---
 const MutationHelper = require('app-state-utils')
 
 #### in HTML script tag
+---
 use a script tag
 <script src="unpkg.com/app-state-utils"></script>
 
 You can manipulate object key/value properties using the methods available
 
 ## more
+---
 found any bugs or need help using the package?
 report: onepetercollins@gmail.com
