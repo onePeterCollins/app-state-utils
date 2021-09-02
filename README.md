@@ -71,61 +71,51 @@ Your 'actions.js' file should look like this;
 /*** Mutation Helper Actions ***/
 
 export const createEntry = (payload) => {
-    return (dispatch) => {
-        const actionPayload = payload || {}
+  const actionPayload = payload || {};
 
-        dispatch ({
-            type: "CREATE_ENTRY",
-            payload: actionPayload
-        })
-    }
-}
+  return {
+    type: "CREATE_ENTRY",
+    payload: actionPayload
+  };
+};
 
 export const updateValue = (payload, staticType) => {
-    return (dispatch) => {
-        const actionPayload = payload || {}
-        const maintainDataType = staticType ? true : false
+  const actionPayload = payload || {};
+  const maintainDataType = staticType ? true : false;
 
-        dispatch ({
-            type: "UPDATE_VALUE",
-            payload: actionPayload,
-            staticType: maintainDataType
-        })
-    }
-}
+  return {
+    type: "UPDATE_VALUE",
+    payload: actionPayload,
+    staticType: maintainDataType
+  };
+};
 
 export const clearValue = (payload) => {
-    return (dispatch) => {
-        const actionPayload = payload || {};
+  const actionPayload = payload || {};
 
-        dispatch ({
-            type: "CLEAR_VALUE",
-            payload: actionPayload
-        })
-    }
-}
+  return {
+    type: "CLEAR_VALUE",
+    payload: actionPayload
+  };
+};
 
 export const deleteEntry = (payload) => {
-    return (dispatch) => {
-        const actionPayload = payload || {};
+  const actionPayload = payload || {};
 
-        dispatch ({
-            type: "DELETE_ENTRY",
-            payload: actionPayload
-        })
-    }
-}
+  return {
+    type: "DELETE_ENTRY",
+    payload: actionPayload
+  };
+};
 
 export const logState = (payload) => {
-    return async (dispatch) => {
-        const actionPayload = payload || {}
+  const actionPayload = payload || {};
 
-        dispatch ({
-            type: "LOG_STATE",
-            payload: actionPayload
-        })
-    }
-}
+  return {
+    type: "LOG_STATE",
+    payload: actionPayload
+  };
+};
 
 ```
 
