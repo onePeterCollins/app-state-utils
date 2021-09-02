@@ -420,6 +420,7 @@ export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 
 **Notice:** Logstate works only in development mode and not in production. Console statements are disabled in production mode.
 
+
 &nbsp;
 &nbsp;
 
@@ -430,11 +431,19 @@ show the aspects of the setup that differ from the example above.
 \
 You can visit the codesandbox demo below each example to try out custom configurations.
 
+
+&nbsp;
+&nbsp;
+
 #### with Vue and Vuex
 ---
 create a vuex store reference and import MutationHelper from 'app-state-utils'
 \
 You can visit the codesandbox demo below each example to try out custom configurations.
+
+
+&nbsp;
+&nbsp;
 
 #### with Node JS
 ---
@@ -442,14 +451,28 @@ const MutationHelper = require('app-state-utils')
 \
 You can visit the codesandbox demo below each example to try out custom configurations.
 
+
+&nbsp;
+&nbsp;
+
 #### in HTML script tag
 ---
-use a script tag
+Import using a script tag;
+```html
+/* Development mode with console warnings enabled */
 <script src="unpkg.com/app-state-utils"></script>
+
+/* Production mode with no console statements */
+<script src="unpkg.com/app-state-utils/dist"></script>
+```
 
 You can manipulate object key/value properties using the methods available
 \
 You can visit the codesandbox demo below each example to try out custom configurations.
+
+
+&nbsp;
+&nbsp;
 
 ## more
 ---
