@@ -199,44 +199,16 @@ const App = (props) => {
       </header>
       <h3>Demo: createEntry()</h3>
 
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-        }}
-      >
-        <input
-          type="text"
-          name="key"
-          placeholder="Enter Key"
-          onChange={(event) => {
-            setKey(event.target.value);
-          }}
-          value={KEY}
-        />
+      <form onSubmit={(event) => {event.preventDefault()}}>
+        <input type="text" name="key" placeholder="Enter Key" onChange={(event) => {setKey(event.target.value)}} value={KEY} />
 
-        <input
-          type="text"
-          name="value"
-          placeholder="Enter Value"
-          onChange={(event) => {
-            setValue(event.target.value);
-          }}
-          value={VALUE}
-        />
+        <input type="text" name="value" placeholder="Enter Value" onChange={(event) => {setValue(event.target.value)}} value={VALUE} />
 
-        <button
-          onClick={(event) => {
-            props.createEntry({ name: KEY, child: [], value: VALUE });
-          }}
-        >
+        <button onClick={(event) => {props.createEntry({ name: KEY, child: [], value: VALUE })}}>
           Create Entry
         </button>
 
-        <button
-          onClick={(event) => {
-            props.logState();
-          }}
-        >
+        <button onClick={(event) => {props.logState()}}>
           Log State To Console
         </button>
       </form>
