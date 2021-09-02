@@ -215,9 +215,9 @@ const App = function (props) {
 
 AppMapStateToProps = (state) {
     return {
-        user: state.user
-        products: state.products
-        cart: state.cart
+        user: state.user,
+        products: state.products,
+        cart: state.cart,
         darkTheme: state.darkTheme
     }
 }

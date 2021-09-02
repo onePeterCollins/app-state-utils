@@ -3,10 +3,8 @@ productionMode = require('./dist/index')
 
 const env = process.env.NODE_ENV || 'development'
 
-switch (env) {
-    case 'development':
-        return developmentMode
-    
-    case 'production':
-        return productionMode
-}
+const libVersion = developmentMode
+
+env === 'production' ? libVersion = productionMode : libVersion = developmentMode
+
+return libVersion
