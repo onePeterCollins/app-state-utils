@@ -1,5 +1,5 @@
-developmentMode = require('./src/index')
-productionMode = require('./dist/index')
+const developmentMode = require('./src/index')
+const productionMode = require('./dist/index')
 
 const env = process.env.NODE_ENV || 'development'
 
