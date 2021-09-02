@@ -69,9 +69,9 @@ import {
 #### with React and Redux
 ---
 **Basic to intermediate knowledge of React and Redux is required**.
-&nbsp;
+\
 You can visit the codesandbox demo below each example to try out custom configurations.
-&nbsp;
+\
 Create a file 'actions.js' to contain actions which can be called from within your app to mutate state.
 Your 'actions.js' file should look like this;
 
@@ -427,19 +427,19 @@ export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 ---
 Using app-state-utils within your components is similar to the **React and Redux** example above, so to avoid repetition, we will only
 show the aspects of the setup that differ from the example above.
-&nbsp;
+\
 You can visit the codesandbox demo below each example to try out custom configurations.
 
 #### with Vue and Vuex
 ---
 create a vuex store reference and import MutationHelper from 'app-state-utils'
-&nbsp;
+\
 You can visit the codesandbox demo below each example to try out custom configurations.
 
 #### with Node JS
 ---
 const MutationHelper = require('app-state-utils')
-&nbsp;
+\
 You can visit the codesandbox demo below each example to try out custom configurations.
 
 #### in HTML script tag
@@ -448,7 +448,7 @@ use a script tag
 <script src="unpkg.com/app-state-utils"></script>
 
 You can manipulate object key/value properties using the methods available
-&nbsp;
+\
 You can visit the codesandbox demo below each example to try out custom configurations.
 
 ## more
