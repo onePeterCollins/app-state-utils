@@ -62,6 +62,7 @@ import {
 &nbsp;
 
 #### with React and Redux
+---
 **Basic to intermediate knowledge of React and Redux is required**.
 Create a file 'actions.js' to contain actions which can be called from within your app to mutate state.
 Your 'actions.js' file should look like this;
@@ -303,17 +304,21 @@ import { logState } from './actions.js';
 
 
 #### with Vue and Vuex
+---
 create a vuex store reference and import MutationHelper from 'app-state-utils'
 
 #### with Node JS
+---
 const MutationHelper = require('app-state-utils')
 
 #### in HTML script tag
+---
 use a script tag
 <script src="unpkg.com/app-state-utils"></script>
 
 You can manipulate object key/value properties using the methods available
 
 ## more
+---
 found any bugs or need help using the package?
 report: onepetercollins@gmail.com
