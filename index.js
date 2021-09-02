@@ -1,10 +1,10 @@
-const developmentMode = require('./src/index')
-const productionMode = require('./dist/index')
+const developmentMode = require('./src')
+const productionMode = require('./dist')
 
 const env = process.env.NODE_ENV || 'development'
 
-let libVersion = developmentMode
+let libVersion = developmentMode.default
 
-env === 'production' ? libVersion = productionMode : libVersion = developmentMode
+env === 'production' ? libVersion = productionMode.default : libVersion = developmentMode.default
 
 export default libVersion
