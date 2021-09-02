@@ -134,6 +134,7 @@ const AppState = {
     products: [],
     cart: [],
     darkTheme: true,
+    message: ''
 }
 
 export default (state = AppState, action) => {
@@ -181,7 +182,7 @@ It is also designed to eliminate the stress involved with managing deeply nested
 **See some example use cases;**
 
 ```javascript
-/** creating new entry in app state **/
+/** Creating new entry in app state **/
 
 import { useState } from "react";
 import { connect } from "react-redux";
@@ -192,21 +193,19 @@ const App = (props) => {
   const [VALUE, setValue] = useState("");
 
   return (
-    <>
-     <form onSubmit={(event) => {event.preventDefault()}}>
-        <input type="text" name="key" placeholder="Enter Key" onChange={(event) => {setKey(event.target.value)}} value={KEY} />
+   <form onSubmit={(event) => {event.preventDefault()}}>
+      <input type="text" name="key" placeholder="Enter Key" onChange={(event) => {setKey(event.target.value)}} value={KEY} />
 
-        <input type="text" name="value" placeholder="Enter Value" onChange={(event) => {setValue(event.target.value)}} value={VALUE} />
+      <input type="text" name="value" placeholder="Enter Value" onChange={(event) => {setValue(event.target.value)}} value={VALUE} />
 
-        <button onClick={(event) => {props.createEntry({ name: KEY, child: [], value: VALUE })}}>
-          Create Entry
-        </button>
+      <button onClick={(event) => {props.createEntry({ name: KEY, child: [], value: VALUE })}}>
+        Create Entry
+      </button>
 
-        <button onClick={(event) => {props.logState()}}>
-          Log State To Console
-        </button>
-      </form>
-    </>
+      <button onClick={(event) => {props.logState()}}>
+        Log State To Console
+      </button>
+    </form>
   );
 };
 
@@ -214,7 +213,8 @@ const AppMapStateToProps = (state) => ({
   user: state.user,
   products: state.products,
   cart: state.cart,
-  darkTheme: state.darkTheme
+  darkTheme: state.darkTheme,
+  message: state.message
 });
 
 const AppMapDispatchToProps = (dispatch) => ({
@@ -241,6 +241,46 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { updateValue, logState } from './actions.js';
 
+const App = (props) => {
+  const [NEWVALUE, setValue] = useState("");
+
+  return (
+   <form onSubmit={(event) => {event.preventDefault()}}>
+      <input type="text" name="value" placeholder="Enter New Value" onChange={(event) => {setValue(event.target.value)}} value={VALUE} />
+
+      <button onClick={(event) => {props.updateValue({ name: 'message', child: [], value: NEWVALUE })}}>
+        Update Message
+      </button>
+
+      <p>
+          <span>{props.message || 'type a message in the input box'}</span>
+      </p>
+
+      <button onClick={(event) => {props.logState()}}>
+        Log State To Console
+      </button>
+    </form>
+  );
+};
+
+const AppMapStateToProps = (state) => ({
+  user: state.user,
+  products: state.products,
+  cart: state.cart,
+  darkTheme: state.darkTheme,
+  message: state.message
+});
+
+const AppMapDispatchToProps = (dispatch) => ({
+  updateValue: (payload) => {
+    dispatch(updateValue(payload));
+  },
+  logState: () => {
+    dispatch(logState());
+  }
+});
+
+export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 
 ```
 
@@ -255,7 +295,36 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { clearValue, logState } from './actions.js';
 
+const App = (props) => {
+  const [NEWVALUE, setValue] = useState("");
 
+  return (
+   <form onSubmit={(event) => {event.preventDefault()}}>
+      <button onClick={(event) => {props.logState()}}>
+        Log State To Console
+      </button>
+    </form>
+  );
+};
+
+const AppMapStateToProps = (state) => ({
+  user: state.user,
+  products: state.products,
+  cart: state.cart,
+  darkTheme: state.darkTheme,
+  message: state.message
+});
+
+const AppMapDispatchToProps = (dispatch) => ({
+  clearValue: (payload) => {
+    dispatch(clearValue(payload));
+  },
+  logState: () => {
+    dispatch(logState());
+  }
+});
+
+export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 ```
 
 [View demo in codesandbox]()
@@ -263,13 +332,42 @@ import { clearValue, logState } from './actions.js';
 &nbsp;
 
 ```javascript
-/** deleting entry from in app state **/
+/** Deleting entry from app state **/
 
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { deleteEntry, logState } from './actions.js';
 
+const App = (props) => {
+  const [NEWVALUE, setValue] = useState("");
 
+  return (
+   <form onSubmit={(event) => {event.preventDefault()}}>
+      <button onClick={(event) => {props.logState()}}>
+        Log State To Console
+      </button>
+    </form>
+  );
+};
+
+const AppMapStateToProps = (state) => ({
+  user: state.user,
+  products: state.products,
+  cart: state.cart,
+  darkTheme: state.darkTheme,
+  message: state.message
+});
+
+const AppMapDispatchToProps = (dispatch) => ({
+  deleteEntry: (payload) => {
+    dispatch(deleteEntry(payload));
+  },
+  logState: () => {
+    dispatch(logState());
+  }
+});
+
+export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 ```
 
 [View demo in codesandbox]()
@@ -283,7 +381,31 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { logState } from './actions.js';
 
+const App = (props) => {
+  return (
+   <form onSubmit={(event) => {event.preventDefault()}}>
+      <button onClick={(event) => {props.logState()}}>
+        Log State To Console
+      </button>
+    </form>
+  );
+};
 
+const AppMapStateToProps = (state) => ({
+  user: state.user,
+  products: state.products,
+  cart: state.cart,
+  darkTheme: state.darkTheme,
+  message: state.message
+});
+
+const AppMapDispatchToProps = (dispatch) => ({
+  logState: () => {
+    dispatch(logState());
+  }
+});
+
+export default connect(AppMapStateToProps, AppMapDispatchToProps)(App);
 ```
 
 [View demo in codesandbox]()
