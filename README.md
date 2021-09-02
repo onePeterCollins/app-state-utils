@@ -186,7 +186,7 @@ With this setup, you can now use the **MutationHelper functions** within your ap
 
 This library is especially useful in large apps where you would otherwise need to write several actions to mutate different parts of your app state.
 
-It is also designed to eliminate the stress involved with mutating deeply nested data.
+It is also designed to eliminate the stress involved with managing deeply nested data.
 
 **See some example use cases;**
 
