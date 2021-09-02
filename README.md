@@ -9,7 +9,7 @@ App state utils is a set of utilities for state management in web apps, it integ
 ##### - [Getting started](#getting-started)
 ##### - [Usage](#usage)
 - ##### - [with React, Redux and React-Redux](#with-react-and-redux)
-- ##### - [with React, Redux, React-Redux and Redux-Thunk](#with-redux-react-redux-and-redux-thunk)
+- ##### - [with React, Redux, React-Redux and Redux-Thunk](#with-react-redux-react-redux-and-redux-thunk)
 - ##### - [with Vue and Vuex](#with-vue-and-vuex)
 - ##### - [with Node JS](#with-node-js)
 - ##### - [in HTML script tag](#in-html-script-tag)
