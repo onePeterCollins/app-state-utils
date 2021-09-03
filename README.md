@@ -40,13 +40,13 @@ To use in HTML script tag
 &nbsp;
 
 #### usage
-This whole documentation is intended to show you how to quickly app-state-utils into your project, it does not strictly define the tools
+This whole documentation is intended to show you how to quickly integrate app-state-utils into your project, it does not strictly define the tools
 you must use in your project.
-Once you get the setup approach, you can configure app-state-utils to suit your specific use case.
+Once you get the setup approach, you can configure the library to suit your specific use case.
 
 If you have setup your project using tools like CRA, Webpack, or Vue CLI
 You will typically use a state management library within your app.
-import the mutation helper in your 'store.js' file thus;
+import the mutation helper in your app state file thus;
 
 ```javascript
 import MutationHelper from 'app-state-utils'
